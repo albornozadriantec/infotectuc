@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>INFOTEC-TUC</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <style type="text/css">
+			.w3-merriweather {
+			  font-family: "Merriweather", serif;
+			}
+			#loader {
+			  position: absolute;
+			  left: 50%;
+			  top: 50%;
+			  z-index: 1;
+			  width: 120px;
+			  height: 120px;
+			  margin: -76px 0 0 -76px;
+			  border: 16px solid #f3f3f3;
+			  border-radius: 50%;
+			  border-top: 16px solid #000000;
+			  -webkit-animation: spin 2s linear infinite;
+			  animation: spin 2s linear infinite;
+			}
+
+			@-webkit-keyframes spin {
+			  0% { -webkit-transform: rotate(0deg); }
+			  100% { -webkit-transform: rotate(360deg); }
+			}
+			.notSelTxt{
+			  -webkit-user-select: none; /* Safari */
+			  -ms-user-select: none; /* IE 10 and IE 11 */
+			  user-select: none; /* Standard syntax */
+			}
+			@keyframes spin {
+			  0% { transform: rotate(0deg); }
+			  100% { transform: rotate(360deg); }
+			}
+			.bar-search {
+			  outline: none !important;
+			  padding: 7px 7px 9px 7px;
+			  color: #333;
+			  font-size: 16px;
+			  height: 39px;
+			  margin-top: 10px;
+			}
+			.bar-height{
+			  height: 60px;
+			}
+			.bar-logo{
+			  margin-top: 5px;
+			  height: 50px;
+			  width: 50px;
+			}
+			.bar-cart{
+			  padding-top: 20px;
+			  padding-left: 5%;
+			  width:30%;
+			}
+			.bar-neg{
+			  overflow: hidden;
+			  width:300px;
+			   text-overflow: ellipsis;
+			   display: -webkit-box;
+			   -webkit-line-clamp: 2;
+			   -webkit-box-orient: vertical;
+			   line-height: normal;
+			}
+
+			.bar-neg-sub{
+			  display: none;
+			}
+			.cnt-ctr-lar{
+			  margin-top: 100px;
+			}
+			.cnt-ctr-sml{
+
+			    display: none;
+			    background: #FFF;
+			}
+
+			.thbGrd{
+			  max-width: 98%;
+			  max-height: 98%;
+			  font-size: 140px;
+			}
+
+			.inpDraLef{
+			  position: absolute;
+			  margin-top: 10px;
+			  margin-left: 5px;
+			}
+
+			.btnWhts{
+			  padding: 5px;
+			  position:fixed;
+			  width:60px;
+			  height:60px;
+			  bottom:40px;
+			  right:40px;
+			  background-color:#25d366;
+			  color:#FFF;
+			  border-radius:50px;
+			  text-align:center;
+			  font-size:30px;
+			  box-shadow: 2px 2px 3px #999;
+			  z-index:100;
+			}
+			.ctnItm{
+			  min-height: 800px;
+			}
+			.ctnCtgDro{
+			  max-height: 300px;
+			  overflow: auto;
+			  width: 250px;
+			}
+			.ctnSrtDro{
+			  width: 180px;
+			}
+			.fxd{
+			  position: fixed;
+			  top:0;
+			  left:0;
+			  width: 100%;
+			  z-index: 1000;
+			}
+			.mrgItm{
+			  margin-left: 8%;
+			  margin-right: 8%;
+			}
+			.pointer{
+				cursor: pointer;
+			}
+			.btnPag{
+				color: #1A73E8;
+				border: none;
+				background: transparent;
+			}
+			.pagCur{
+				padding-top: 5px;
+				padding-bottom: 5px;
+				padding-left: 12px;
+				padding-right: 12px;
+				background: #0000000C;
+				font-weight: bold;
+			}
+			.spc50{
+				margin-top: 50px;
+			}
+			.inNum{
+			  	width: 90px;
+			  	text-align: center;
+			 }
+
+			@media screen and (max-width: 1200px) {
+			  .bar-cart{
+			    padding-top: 20px;
+			    padding-left: 3%;
+			    width:20%;
+			  }
+			  .mrgItm{
+			    margin-left: 4%;
+			    margin-right: 4%;
+			  }
+			}
+
+			@media screen and (max-width: 760px) {
+			  .bar-neg{
+			    display: none;
+			  }
+			  .bar-cart{
+			    padding-left: 16px;
+			    width:80px;
+			  }
+
+
+			  .bar-neg-sub{
+			    display: block;
+			  }
+			  .content-cat{
+			    display: none;
+			  }
+			  .cnt-ctr-lar{
+			    display: none;
+			  }
+			  .cnt-ctr-sml{
+			    display: block;
+			    background: #FFF;
+			  }
+
+			  .ctnItm{
+			    min-height: 400px;
+			  }
+			  .mrgItm{
+			    margin-left: 2%;
+			    margin-right: 2%;
+			  }
+			  .btnPag{
+				color: #1A73E8;
+				border: none;
+				background: transparent;
+				font-size: 11px;
+			  }
+			  .spc50{
+				margin-top: 25px;
+			  }
+			  .inNum{
+			  	width: 60px;
+			  	text-align: center;
+			  }
+
+			}
+
+		</style>
+
+
+    </head>
+    <body ng-app='app' style="background-color: #ebebeb;" ng-controller='ctrMan' ng-cloack>
+
+        <div id="loader"></div>
+        <div id="ctnMan" style="visibility: hidden;">
+            <div class="w3-row {{clt}} fxd" >
+                <div class="w3-col w3-left w3-container bar-height" style="width:80px">
+                    <img id="lg" src="logo.png" class="w3-round bar-logo" alt="">
+                </div>
+                <div class="w3-col w3-left w3-container bar-height bar-neg">
+                    <h4 id="labNeg"  class="w3-merriweather" style="font-weight: bold; line-height: 22px;margin: 5px 0px; line-height: 25px; visibility: hidden;" ng-model="ngc">{{ngc}}</h4>
+                </div>
+                <div class="w3-col w3-right w3-center bar-height bar-cart" >
+                    <div ng-hide='!crt'>
+                        <i class="fa fa-shopping-cart  w3-xlarge pointer w3-left" ng-click='myCrt()' ></i>
+                        <span id="bdgCrt" class="w3-badge w3-red w3-small w3-left" style="margin-top:-5px;margin-left: 1px;">0</span>
+                    </div>
+
+                </div>
+                <div class="w3-rest bar-height">
+                    <input class="w3-input w3-border w3-round bar-search w3-merriweather" placeholder="{{txtBsc+'...'}}" type="text" maxlength="30" autocapitalize="off" autocorrect="off" spellcheck="false" autocomplete="off" ng-model="srch" ng-init="srch=''" ng-Keyup="configPages()">
+                </div>
+            </div>
+            <div class="w3-container w3-merriweather w3-center {{clt}}  bar-neg-sub" style="margin-top:60px;" ng-model="ngc">
+                <h3 ng-hide="ngc.length>15">{{ngc}}</h3><h5 ng-hide="ngc.length<16">{{ngc}}</h5>
+            </div>
+
+
+            <div class="w3-row cnt-ctr-sml w3-merriweather w3-card">
+                <div class="w3-container w3-col s5 w3-center" >
+                    <div onclick="document.getElementById('modCtg').style.display='block'" ng-hide="ctgs.length<2">
+                        <h4 class="notSelTxt" style="color: {{cblu}};">{{txtCtg}}</h4>
+                    </div>
+
+
+
+                </div>
+                <div class="w3-container w3-col s2 w3-center"><h4 style="color: #00000021;">|</h4></div>
+                <div class="w3-container w3-col s5 w3-center" onclick="document.getElementById('modSrt').style.display='block'">
+                    <h4 class="notSelTxt" style="color: {{cblu}};">{{txtSrt}}</h4>
+                </div>
+            </div>
+
+            <div class="w3-container cnt-ctr-lar">
+
+                <div class="w3-left w3-merriweather" style="margin-left:50px;" ng-hide="ctgs.length<2">
+                    {{txtCtg}}
+                    <div class="w3-dropdown-hover w3-merriweather">
+                        <button class="w3-button {{clt}}" style="width:250px">{{txtCtgCrt}}</button>
+                        <div class="w3-dropdown-content w3-bar-block ctnCtgDro {{clt}}" >
+                            <a href="" class="w3-bar-item w3-button" ng-repeat='ctg in ctgs' ng-click='selCtg(ctg)'>{{ctg.n}}</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="w3-right w3-merriweather" style="margin-right:50px;">
+                    {{txtSrt}}
+                    <div class="w3-dropdown-hover w3-merriweather">
+                        <button class="w3-button {{clt}}" style="width:180px">{{txtSrtCrt}}</button>
+                        <div class="w3-dropdown-content w3-bar-block ctnSrtDro {{clt}}">
+                            <a href="" class="w3-bar-item w3-button" ng-click="selSrt(0)">{{txtAlf}}</a>
+                            <a href="" class="w3-bar-item w3-button" ng-click="selSrt(1)">{{txtMyp}}</a>
+                            <a href="" class="w3-bar-item w3-button" ng-click="selSrt(2)">{{txtMnp}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="w3-container spc50" >
+
+                <div ng-init='configPages()'  class="w3-row-padding ctnItm">
+                    <div class="w3-col s12 m6 l4" ng-repeat='itm in itmsCur | orderBy:sort| startFromGrid: currentPage * pageSize | limitTo: pageSize '>
+                        <div class="w3-panel w3-card w3-white mrgItm w3-merriweather">
+                            <div ng-hide="!img"  class="w3-container w3-margin-bottom w3-center" style="height: 260px">
+                                <img ng-hide="{{itm.l=='null'?true:false}}" src="{{itm.l+'.jpg'}}" class="w3-round thbGrd" onload="ajIm(this)">
+                                <i ng-hide="{{itm.l=='null'?false:true}}" class="fa fa-image w3-round thbGrd" style="margin-top:60px;"></i>
+
+                            </div>
+                            <div class="w3-margin-top w3-margin-bottom w3-border-bottom"></div>
+                            <p class="w3-small" style="line-height: 0.7;" ng-hide="cla">{{itm.k}}</p>
+                            <p class="w3-small" style="line-height: 0.7;" ng-hide="uni">{{itm.u}}</p>
+                            <p style="line-height: 1.1; height: 35px;">{{itm.d}}</p>
+
+                            <div class="w3-row w3-center w3-margin-top w3-margin-bottom" style="height:40px;">
+                                <div class="w3-col w3-right" style="width:60px">
+
+                                    <i class="fa fa-cart-plus w3-xxlarge pointer" ng-click='addCrt($event.currentTarget,itm)'  style="color: {{cblu}};" ng-hide='!crt'></i>
+                                </div>
+                                <div class="w3-rest w3-center">
+                                    <label ng-class="{'w3-large':itm.p.length>12,'w3-xlarge':itm.p.length<=12}">{{itm.p}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class='btn-group w3-center spc50'>
+                    <button type='button' class='w3-merriweather btnPag pointer' ng-hide='currentPage == 0' ng-click='ntr()'>< {{txtPrv}}</button>
+                    <label class="w3-merriweather w3-large w3-margin-left pagCur">{{currentPage+1}}</label><label class="w3-merriweather w3-large w3-margin-right">{{' / '+ pages.length }}</label>
+                    <button type='button' class='w3-merriweather btnPag pointer' ng-hide='currentPage >= itmsCur.length/pageSize - 1' , ng-click='nxt()'>{{txtNxt}} ></button>
+                </div>
+
+            </div>
+
+            <br><br><br>
+            <footer class="w3-container w3-padding-32 spc50 {{clt}}">
+                <div class="w3-row-padding w3-center">
+                    <div class="{{ txtInf==null||txtInf==''?'':'w3-half' }}" ng-hide="txtTel==null||txtTel==''?true:false">
+                        <div class="w3-container" id="contact">
+                            <h4 class="w3-merriweather">{{ngc}}</h4>
+                            <a href="tel:{{txtTel}}" ><i class="fa fa-phone"></i>{{txtTel}}</a><br>
+                            <a class="w3-margin-top" href="mailto:{{txtCor}}" ng-hide="txtCor==''||txtCor==null?true:false"><i class="fa fa-envelope"></i>{{txtCor}}</a>
+                        </div>
+                    </div>
+
+                    <div class="{{ txtTel==null||txtTel==''?'':'w3-half' }}" ng-hide="txtInf==null||txtInf==''?true:false">
+                        <p id="textInf" ></p>
+                    </div>
+
+
+                </div>
+                <div style="height:90px" ng-hide="!wat"></div>
+            </footer>
+            <a ng-hide="!wat" href="https://api.whatsapp.com/send?phone={{txtTel}}" class="btnWhts" target="_blank">
+                <i class="fa fa-whatsapp w3-xxxlarge"></i>
+            </a>
+
+
+            <div id="modCrt" class="w3-modal" style="padding-top:30px;z-index: 3000;">
+                <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px;overflow: auto; height: 90%;">
+
+                    <div class="w3-center"><br>
+                        <span onclick="document.getElementById('modCrt').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">{{clo}} &times;</span>
+                    </div>
+                    <form class="w3-container w3-margin-top" ng-submit="snd()">
+                        <div class="w3-section">
+                            <div class="w3-padding-small">
+                                <i class="fa fa-user w3-xlarge inpDraLef"></i><input class="w3-input w3-border" style="padding-left: 35px;" placeholder="{{txtPlaNam}}" type="text" ng-model="namc" required>
+                            </div>
+
+                            <input class="w3-button w3-block w3-section w3-padding w3-margin-top w3-merriweather {{clt}}" type="submit" value="{{txtSct}}"  ng-hide="btc">
+                            <div class="w3-center" ng-hide="lod"><i class="fa fa-spinner w3-jumbo w3-spin"></i></div>
+                            <p ng-hide="itmsCrt.itms.length>0?true:false"  class="w3-display-middle">{{txtSin}}</p>
+                            <div class="w3-row w3-border-bottom w3-padding-16" ng-repeat='itm in itmsCrt.itms'>
+                                <div ng-hide="!img"  class="w3-col s3 m2 l2 w3-center">
+                                    <img ng-hide="{{itm.l=='null'?true:false}}" src="{{itm.l+'.jpg'}}" class="w3-round" style="width:90%;">
+
+                                    <i ng-hide="{{itm.l=='null'?false:true}}" class="fa fa-image w3-jumbo w3-round" style="width:90%;"></i>
+
+                                </div>
+                                <div class="w3-col s9 m10 l10">
+                                    <span class="w3-margin-left w3-merriweather" ng-hide="cla">{{itm.k}}</span><br>
+                                    <span class="w3-margin-left w3-merriweather" ng-hide="uni">{{itm.u}}</span><br>
+                                    <span class="w3-margin-left w3-merriweather">{{itm.d}}</span>
+                                    <div class="w3-row">
+                                        <div class="w3-col s2 m5 l5 w3-text-red">
+                                            <i class="fa fa-trash w3-xlarge w3-right" style="margin-top: 5px;" ng-click='delItmCrt(itm)'></i>
+                                        </div>
+                                        <div class="w3-col s10 m7 l7 ">
+                                            <i class="fa fa-plus-circle w3-xlarge w3-margin-right w3-right" ng-click='itm.q=itm.q+1' style="margin-top: 5px;"></i>
+
+                                            <span class="w3-margin-left w3-margin-right w3-xlarge w3-right"><input class="inNum" type="text" ng-model="itm.q" ></span>
+                                            <i class="fa fa-minus-circle w3-xlarge w3-right" ng-click='itm.q=itm.q-1<0?itm.q:itm.q-1' style="margin-top: 5px;"></i>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+
+
+            <div id="modSrt" class="w3-modal" style="z-index: 3000;">
+                <div class="w3-modal-content w3-card-4">
+                    <header class="w3-container {{clt}}">
+                        <span onclick="document.getElementById('modSrt').style.display='none'"
+                                class="w3-button w3-display-topright">&times;</span>
+                        <h2>{{txtSrt}}</h2>
+                    </header>
+                    <div class="w3-container">
+                        <ul class="w3-ul w3-border-bottom">
+                            <li class="w3-container notSelTxt" ng-click="selSrt(0)">{{txtAlf}}</li>
+                            <li class="w3-container notSelTxt" ng-click="selSrt(1)">{{txtMyp}}</li>
+                            <li class="w3-container notSelTxt" ng-click="selSrt(2)">{{txtMnp}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="modCtg" class="w3-modal" style="z-index: 3000;">
+                <div class="w3-modal-content w3-card-4">
+                    <header class="w3-container {{clt}}">
+                        <span onclick="document.getElementById('modCtg').style.display='none'"
+                                class="w3-button w3-display-topright">&times;</span>
+                        <h2>{{txtCtg}}</h2>
+                    </header>
+                    <div class="w3-container" style="overflow: auto; max-height: 320px;">
+                        <ul class="w3-ul w3-monospace" ng-repeat='ctg in ctgs'>
+                            <li class="w3-border-bottom w3-container" ng-click='selCtg(ctg)'>{{ctg.n}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <script type="text/javascript">
+
+			angular.module('app', [])
+			  .controller('ctrMan',
+			    function($scope) {
+			      var modCtg = document.getElementById('modCtg');
+			      var modSrt = document.getElementById('modSrt');
+			      var modCrt = document.getElementById('modCrt');
+			      var bdgCrt = document.getElementById("bdgCrt");
+			      window.onclick = function(event) {
+			        if (event.target == modCtg) {
+			          modCtg.style.display = "none";
+			        }else if(event.target == modSrt){
+			          modSrt.style.display = "none";
+			        }
+			        else if(event.target == modCrt){
+			          modCrt.style.display = "none";
+			        }
+			      }
+			      $scope.currentPage = 0;
+			      $scope.pagSiz = 0;
+			      $scope.pageSize = 6;
+			      $scope.pages = [];
+			      $scope.itms = [];
+			      $scope.itmsCur = [];
+			      $scope.ctgs = [];
+			      $scope.itmsCrt = [];
+			      $scope.txtSrt = '...';
+			      $scope.txtCtg = '...';
+			      $scope.txtAlf = '...';
+			      $scope.txtMay = '...';
+			      $scope.txtMen = '...';
+			      $scope.txtNxt = '...';
+			      $scope.txtPrv = '...';
+			      $scope.txtSrtCrt = $scope.txtAlf;
+			      $scope.sort = 'd';
+			      $scope.ctg = '';
+			      $scope.txtTel='';
+			      $scope.txtCor='';
+			      $scope.txtInf='';
+			      $scope.txtSct='';
+			      $scope.txtPlaNam='';
+			      $scope.txtSct='';
+			      $scope.txtSin='';
+			      $scope.uni = false;
+			      $scope.cla = false;
+			      $scope.wat = false;
+			      $scope.crt = false;
+			      $scope.lod = true;
+			      $scope.btc = false;
+			      $scope.img = true;
+			      $scope.ctok='';
+			      $scope.ernw='';
+			      $scope.clt = 'w3-black';
+			      $scope.cblu = '#1A73E8';
+			      $scope.cgre = '#33AA66';
+			      $scope.clo = 'close';
+
+				  $scope.configPages = function() {
+				  		var q = $scope.srch;
+				  		try{
+				  			q = $scope.srch.replace(" ","");
+				  		}catch(e){
+
+				  		}
+				        if($scope.ctg=='' && q=='' ){
+				            $scope.itmsCur = $scope.itms;
+				        }else{
+
+				        	if(q != ''){
+				        		$scope.txtCtgCrt = $scope.ctgs[0].n;
+				        		$scope.ctg = 0;
+				        		$scope.currentPage = 0;
+				        	}
+				            $scope.itmsCur = [];
+				            try{
+				            	$scope.itms.forEach( function(val, ind, arr) {
+
+					                var ax = q==""?true:(val.d.toUpperCase().search(q.toUpperCase() ) > -1  );
+
+					                if( ($scope.ctg=='' || val.c==$scope.ctg) && ax ){
+					                    $scope.itmsCur.push(val);
+					                }
+					            });
+				            }catch(e){
+
+				            }
+				        }
+				        var intRef = 20;
+				        $scope.pages.length = 0;
+				        var ini = $scope.currentPage - 4;
+				        var fin = $scope.currentPage + 5;
+				        if (ini < 1) {
+				          ini = 1;
+				          fin = Math.ceil($scope.itmsCur.length / $scope.pageSize);
+				        } else {
+				            ini = -1;
+				            fin = Math.ceil($scope.itmsCur.length / $scope.pageSize);
+				        }
+				        if (ini < 1) ini = 1;
+				        for (var i = ini; i <= fin; i++) {
+				          $scope.pages.push({
+				            no: i
+				          });
+				        }
+				        if ($scope.currentPage >= $scope.pages.length)
+				          $scope.currentPage = $scope.pages.length;
+				      };
+
+
+
+			      $scope.setPage = function(index) {
+			        $scope.currentPage = index - 1;
+			      };
+
+			      $scope.nxt = function() {
+			        $scope.currentPage = $scope.currentPage + 1;
+			        topScr();
+			      };
+			      $scope.ntr = function() {
+			      	$scope.currentPage = $scope.currentPage - 1;
+			        topScr();
+			      };
+
+
+			      $scope.addCrt = function(e,itm){
+			        e.setAttribute('class','fa fa-check-circle w3-xxlarge pointer');
+			        e.style.color = $scope.cgre;
+				    addItmCrt(itm);
+				    setTimeout(function () {
+				      e.setAttribute('class','fa fa-cart-plus w3-xxlarge pointer');
+				      e.style.color = $scope.cblu;
+				    }, 600);
+
+
+			      }
+
+			      $scope.myCrt = function(){
+			        modCrt.style.display='block';
+			        $scope.itmsCrt = getStg();
+			      }
+			      $scope.delItmCrt = function(itm){
+			        $scope.itmsCrt = delItmCrt(itm);
+			      }
+			      $scope.selSrt = function(sel){
+			        switch(sel) {
+			          case 0:
+			            $scope.txtSrtCrt = $scope.txtAlf;
+			            $scope.sort = 'd';
+			            break;
+			          case 1:
+			            $scope.txtSrtCrt = $scope.txtMyp;
+			            $scope.sort = '-v';
+			            break;
+			          case 2:
+			            $scope.txtSrtCrt = $scope.txtMnp;
+			            $scope.sort = 'v';
+			            break;
+			        }
+			        modSrt.style.display = "none";
+			      }
+			      $scope.selCtg = function(ctg){
+
+			        $scope.txtCtgCrt = ctg.n;
+			        $scope.ctg = ctg.i==0?'':ctg.i;
+			        modCtg.style.display = "none";
+			        $scope.currentPage = 0;
+			        $scope.srch = '';
+			        $scope.configPages();
+			      }
+			      $scope.srchAll = function(){
+			        console.log("mycart: "+$scope.srch);
+
+			      }
+			      $scope.snd = function(){
+
+			        var text = $scope.txtPlaNam+": "+$scope.namc+"\n\n";
+			        var suc = true;
+
+			        $scope.itmsCrt.itms.forEach( function(v, i, ar) {
+
+			        	if( !(!isNaN(v.q) && !isNaN(parseFloat(v.q) ) ) ){
+			        		suc = false;
+			        		return;
+			        	}
+
+			            text += "*"+v.q+" -> "+v.d+" :"+ v.u+" : "+v.k+"\n";
+			        });
+
+			        if(suc){
+			        	setStg({});
+			            $scope.itmsCrt = [];
+			            bdgCrt.style.visibility = "hidden";
+			            modCrt.style.display = "none";
+
+				        window.open('https://api.whatsapp.com/send?phone='+encodeURIComponent($scope.txtTel)+'&text='+encodeURIComponent(text),'_blank')
+			        }else{
+			        	alert("only numeric values");
+			        }
+
+
+			      }
+			      addItmCrt(null);
+			      var unts = {};
+			      var result = data;
+
+
+			        var ctnMan = document.getElementById("ctnMan");
+			        ctnMan.style.visibility = "visible";
+			        var loader = document.getElementById("loader");
+			        loader.style.visibility = "hidden";
+			        var lg_v = document.getElementById("lg");
+			        var ngc = result.ngc;
+
+
+			        $scope.txtSrt = result.orp;
+			        $scope.txtCtg = result.ctgs;
+			        $scope.txtAlf = result.alf;
+			        $scope.txtMyp = result.myp;
+			        $scope.txtMnp = result.mnp;
+			        $scope.txtBsc = result.bsc;
+			        $scope.txtNxt = result.nxt;
+			      	$scope.txtPrv = result.prv;
+			        $scope.ctok = result.ctok;
+			        $scope.ernw = result.ernw;
+
+			        $scope.txtTel = result.tel2;
+			        $scope.txtCor = result.cor2;
+			        $scope.txtInf = result.dir2;
+
+			        $scope.img = result.img;
+
+			        $scope.uni = !result.uni;
+			        $scope.cla = !result.cla;
+			        $scope.clo = result.clo;
+
+
+			        $scope.wat = result.wha&&result.tel2!='';
+			        $scope.crt = result.crt&&result.tel2!='';
+			        $scope.txtSct = result.sct;
+			        $scope.txtPlaNam = result.nam;
+
+			        $scope.txtSin = result.sin;
+
+			        $scope.txtSct = result.sct;
+			        $scope.txtSrtCrt = $scope.txtAlf;
+
+			        $scope.clt = result.clt;
+			        $scope.ngc = ngc;
+
+
+			        if(result.lg.length>0){
+			          $scope.lg = result.lg;
+			        }else{
+			          lg_v.style.visibility = "hidden";
+			          $scope.lg = "0=="
+			        }
+
+			        result.und.forEach( function(val, ind, arr) {
+			            unts[val.i] = val.n;
+			        });
+
+
+			        $scope.itms = result.itm;
+			        $scope.ctgs = result.ctg;
+			        $scope.txtCtgCrt = $scope.ctgs[0].n;
+
+
+			        $scope.itms.forEach( function(val, ind, arr) {
+			            val.u = unts[val.u];
+
+			        });
+
+
+
+			        var link = document.createElement('link');
+			        link.rel = 'icon';
+			        document.getElementsByTagName('head')[0].appendChild(link);
+			        link.href = 'logo.png';
+			        $scope.currentPage = 1;
+			        $scope.configPages();
+			        topScr();
+					setTimeout(function () {
+				      	var el = document.getElementById('labNeg');
+					   	var divHeight = el.offsetHeight
+					   	var lineHeight = parseInt(el.style.lineHeight);
+					   	var lines = divHeight / lineHeight;
+	    				if( lines < 2){
+	    					el.style.lineHeight = "50px";
+	    				}
+	    				if($scope.ngc.length>25){
+							el.style.fontSize = "16px";
+	    				}
+	    				if($scope.ngc.length>40){
+							el.style.fontSize = "14px";
+	    				}
+	    				el.style.visibility = "visible";
+				    }, 400);
+			    })
+			.filter('startFromGrid', function() {
+			  return function(input, start) {
+			    start = +start;
+			    return input.slice(start);
+			  }
+			});
+			var stgLoc={};
+            function stgChk(){
+                var test = 'test';
+                try {
+                    localStorage.setItem(test, test);
+                    localStorage.removeItem(test);
+                    return true;
+                } catch(e) {
+                    return false;
+                }
+            }
+            function getStg(){
+                if( stgChk() ){
+                  var itmsAux = localStorage.getItem("mn_shop_13x");
+                  return itmsAux==null?{}:JSON.parse(itmsAux);
+                }else{
+                  return stgLoc;
+                }
+            }
+            function setStg(itms){
+                if( stgChk() ){
+                  localStorage.setItem("mn_shop_13x", JSON.stringify(itms) );
+                }else{
+                  stgLoc = itms;
+                }
+            }
+			function addItmCrt(itm){
+			    var itmsCrt = getStg();
+			    if(itmsCrt.itms==undefined){
+			        itmsCrt.itms = [];
+			        if(itm!=null){
+			          itm.q = 1;
+			          itmsCrt.itms.push(itm);
+			        }
+			      }else if(itm!=null){
+			          var aux = null;
+			          for(var i=0;i<itmsCrt.itms.length;i++){
+			            if(itmsCrt.itms[i].i==itm.i){
+			                aux=itmsCrt.itms[i];
+			                break;
+			              }
+			          }
+			          if(aux==null){
+			            itm.q = 1;
+			            itmsCrt.itms.push(itm);
+			          }else{
+			            aux.q +=1;
+			          }
+
+			      }
+			    setStg(itmsCrt);
+			    bdgCrt.innerHTML = itmsCrt.itms.length;
+			    bdgCrt.style.visibility = itmsCrt.itms.length==0? "hidden":"visible";
+
+			}
+			function delItmCrt(itm){
+			    var itmsCrt = getStg();
+			    var ind = -1;
+			    for(var i=0;i<itmsCrt.itms.length;i++){
+			      if(itmsCrt.itms[i].i==itm.i){
+			          ind=i;
+			          break;
+			        }
+			    }
+			    if(ind>-1){
+			      itmsCrt.itms.splice(ind, 1);
+			    }
+			    setStg(itmsCrt);
+			    bdgCrt.innerHTML = itmsCrt.itms.length;
+			    bdgCrt.style.visibility = itmsCrt.itms.length==0? "hidden":"visible";
+			    return itmsCrt;
+			}
+			function topScr() {
+			  document.body.scrollTop = 0;
+			  document.documentElement.scrollTop = 0;
+			}
+			function ajIm(el){
+				el.style.marginTop = ((260-el.offsetHeight)/2)+"px";
+			}
+			var data = /*#d4t4#*/ {"itm":[{"i":616,"c":-300,"u":0,"d":"CBIO DISCO SSD 240GB+ADAPTADOR CADDY DISK+DISCO MECANICO COMO ESCLAVO+INST SO+COLOCACION MEMORIA 2GB","p":"$65.000,00","v":65000,"k":"Sin Clave","l":"img_616","z":20},{"i":456,"c":-300,"u":0,"d":"FORMATEO DE PC","p":"$7.500,00","v":7500,"k":"Sin Clave","l":"img_456","z":20},{"i":457,"c":-300,"u":0,"d":"FORMATEO+BACKUP+INSTALACION DE PROGRAMAS BÁSICOS","p":"$10.000,00","v":10000,"k":"Sin Clave","l":"img_457","z":20},{"i":611,"c":-300,"u":0,"d":"RECEPCIÓN DE PC PARA DIAGNOSTICO","p":"$1,00","v":1,"k":"Sin Clave","l":"img_611","z":20},{"i":513,"c":-300,"u":0,"d":"REPARACION DE HARD PC","p":"$3.000,00","v":3000,"k":"REPARAHARD","l":"img_513","z":20},{"i":484,"c":8,"u":0,"d":"ADAPTADOR 6,5MM MACHO A 3,5MM HEMBRA MONO MICRÓFONO SONIDO","p":"$5.000,00","v":5000,"k":"FICHA6,5MMA3,5MM","l":"img_484","z":10},{"i":491,"c":8,"u":0,"d":"ADAPTADOR DE AUDIO BLUETOOTH SUONO","p":"$3.500,00","v":3500,"k":"701575363117","l":"img_491","z":10},{"i":279,"c":8,"u":0,"d":"ADAPTADOR DE AUDIO BLUETOOTH USB AUTOMOVIL MZ-301","p":"$3.500,00","v":3500,"k":"MZ301","l":"img_279","z":10},{"i":483,"c":8,"u":0,"d":"ADAPTADOR PLUG 6,3MM A PLUG 3,5MM FICHA MICRÓFONO AUXILIAR","p":"$5.000,00","v":5000,"k":"FICHA6.3MM","l":"img_483","z":10},{"i":7,"c":8,"u":0,"d":"CABLE AUXILIAR 3 RCA MACHO A 3 RCA MACHO 1,5 MTS MYE","p":"$1.600,00","v":1600,"k":"2012","l":"img_7","z":10},{"i":322,"c":8,"u":0,"d":"CABLE AUXILIAR 3 RCA MACHO A 3 RCA MACHO 1,5 MTS YX","p":"$1.500,00","v":1500,"k":"3RCAYX","l":"img_322","z":10},{"i":297,"c":8,"u":0,"d":"CABLE DE AUDIO 3.5 MACHO A 3.5 MACHO 1MTS LISNDA","p":"$1.500,00","v":1500,"k":"5784699125477","l":"img_297","z":10},{"i":489,"c":53,"u":0,"d":"MOCHILA ANTIRROBO CON PUERTO USB","p":"$25.500,00","v":25500,"k":"MOCHIANTIROBO","l":"img_489","z":10},{"i":546,"c":40,"u":0,"d":"LUZ LED TRASERA PARA BICICLETA RECARGABLE","p":"$4.500,00","v":4500,"k":"6940360058942","l":"img_546","z":10},{"i":545,"c":40,"u":0,"d":"SET DE 2 LUCES LED PARA BICICLETA","p":"$5.000,00","v":5000,"k":"7790000118043","l":"img_545","z":10},{"i":157,"c":3,"u":0,"d":"ANILLO SOPORTE METALICO PARA CELULAR","p":"$500,00","v":500,"k":"ITECTUC17","l":"img_157","z":10},{"i":327,"c":3,"u":0,"d":"ARO SELFIE RK-12","p":"$2.800,00","v":2800,"k":"112105003","l":"img_327","z":10},{"i":158,"c":3,"u":0,"d":"BRAZALETE FUNDA DEPORTIVA PARA CELULAR","p":"$1.000,00","v":1000,"k":"2250","l":"img_158","z":10},{"i":288,"c":3,"u":0,"d":"FUNDA SUMERGIBLE PARA CELULARES","p":"$1.500,00","v":1500,"k":"ITECTUC132","l":"img_288","z":10},{"i":173,"c":3,"u":0,"d":"LAPIZ OPTICO GENERICO PARA PANTALLA TACTIL","p":"$300,00","v":300,"k":"135702668491","l":"img_173","z":10},{"i":512,"c":3,"u":0,"d":"MICROFONO CORBATERO INALAMBRICO TIPO C","p":"$13.000,00","v":13000,"k":"6290132575390","l":"img_512","z":10},{"i":210,"c":3,"u":0,"d":"MINI ESFERA LUMINOSA USB CON SENSOR SONORO","p":"$4.000,00","v":4000,"k":"MINIESFERALUM","l":"img_210","z":10},{"i":511,"c":3,"u":0,"d":"SOPORTE PARA CELULARES SUONO","p":"$2.800,00","v":2800,"k":"701575361489","l":"img_511","z":10},{"i":160,"c":3,"u":0,"d":"SOPORTE TIPO TRIPODE PARA CAMARA DE FOTOS NOGA","p":"$2.300,00","v":2300,"k":"2286","l":"img_160","z":10},{"i":684,"c":3,"u":0,"d":"TRÍPODE PARA CELULAR\/CAMARA DINAX DX-TM110","p":"$10.800,00","v":10800,"k":"Sin Clave","l":"img_684","z":10},{"i":768,"c":1,"u":0,"d":"ADAPTADOR CADDY DISK SATA 2,5\" 12,7MM","p":"$12.000,00","v":12000,"k":"Sin Clave","l":"img_768","z":10},{"i":261,"c":1,"u":0,"d":"ADAPTADOR CADDY DISK SATA 2,5\" 9.5MM","p":"$8.000,00","v":8000,"k":"ITECTUC06","l":"img_261","z":10},{"i":156,"c":1,"u":0,"d":"ADAPTADOR DE RED USB \"NOGA NET\"","p":"$8.000,00","v":8000,"k":"7798137381163","l":"img_156","z":10},{"i":632,"c":1,"u":0,"d":"ALAMBRE ULTRAFINO DE COBRE YX 0,1MM","p":"$1.000,00","v":1000,"k":"ALAMBRECOBRE","l":"img_632","z":10},{"i":133,"c":1,"u":0,"d":"ANTENA WI-FI USB PARA PC MOD 802.11N","p":"$6.000,00","v":6000,"k":"6920102101013","l":"img_133","z":10},{"i":557,"c":1,"u":0,"d":"CABLE DE RED CAT 5E 30 MTS","p":"$9.000,00","v":9000,"k":"CABLERED30MTS","l":"img_557","z":10},{"i":550,"c":1,"u":0,"d":"CABLE DE RED POR 5 MTS CAT 6E","p":"$3.000,00","v":3000,"k":"6290132560341","l":"img_550","z":10},{"i":167,"c":1,"u":0,"d":"CABLE DE RED X 10 MTS CAT 5E","p":"$3.500,00","v":3500,"k":"2029","l":"img_167","z":10},{"i":510,"c":1,"u":0,"d":"CABLE DE RED X 25 MTS CAT 5E","p":"$7.000,00","v":7000,"k":"CABLEREDKELI","l":"img_510","z":10},{"i":660,"c":1,"u":0,"d":"CABLE DE RED X 25 MTS CAT 6E","p":"$7.500,00","v":7500,"k":"REDCAT625MTS","l":"img_660","z":10},{"i":164,"c":1,"u":0,"d":"CABLE SATA DATOS A SATA DATOS","p":"$2.500,00","v":2500,"k":"CABLESATA50CM","l":"img_164","z":10},{"i":154,"c":1,"u":0,"d":"CABLE USB 3.0 MTS PARA ROUTERS E IMPRESORAS","p":"$350,00","v":350,"k":"2063","l":"img_154","z":10},{"i":132,"c":1,"u":0,"d":"CABLE VGA A VGA 1,5 MTS","p":"$4.000,00","v":4000,"k":"6290132557983","l":"img_132","z":10},{"i":664,"c":1,"u":0,"d":"CABLE VGA A VGA 5 MTS.","p":"$6.800,00","v":6800,"k":"VGA5MTS","l":"img_664","z":10},{"i":166,"c":1,"u":0,"d":"CABLES DE RED POR 5 MTS CAT 5E","p":"$2.700,00","v":2700,"k":"2028","l":"img_166","z":10},{"i":754,"c":1,"u":0,"d":"CAMARA WEB CON MICROFONO 720P (USB)","p":"$7.804,55","v":7804.55,"k":"Sin Clave","l":"img_754","z":10},{"i":385,"c":1,"u":0,"d":"CARGADOR UNIVERSAL DE NOTEBOOK 8PINES \"ONLY\"","p":"$16.400,00","v":16400,"k":"112403001","l":"img_385","z":10},{"i":622,"c":1,"u":0,"d":"CARGADOR UNIVERSAL PARA NOTEBOOK SEISA (COMPATIBLE CON NETS DEL GOBIERNO)","p":"$16.000,00","v":16000,"k":"CARGADORNOTEBOOKSEISA","l":"img_622","z":10},{"i":83,"c":1,"u":0,"d":"CARRY DISK SATA 2,5 USB2.0 SEISA","p":"$8.000,00","v":8000,"k":"9012","l":"img_83","z":10},{"i":629,"c":1,"u":0,"d":"COMBO INALAMBRICO DE TECLADO Y MOUSE YALENDAR W3100","p":"$37.260,00","v":37260,"k":"W300","l":"img_629","z":10},{"i":765,"c":1,"u":0,"d":"COMBO TECLADO + MOUSE INALAMBRICO XAEA","p":"$21.087,50","v":21087.5,"k":"Sin Clave","l":"img_765","z":10},{"i":389,"c":1,"u":0,"d":"COMBO TECLADO + MOUSE USB ONLY D52-20","p":"$19.600,00","v":19600,"k":"116300464","l":"img_389","z":10},{"i":755,"c":1,"u":0,"d":"COMBO TECLADO Y MOUSE GAMER RGB KL160","p":"$30.345,00","v":30345,"k":"Sin Clave","l":"img_755","z":10},{"i":57,"c":1,"u":0,"d":"CONVERSOR DE SEÑAL VGA A HDMI","p":"$9.000,00","v":9000,"k":"VGA2HDMI","l":"img_57","z":10},{"i":479,"c":1,"u":0,"d":"CONVERSOR HDMI A VGA SUONO","p":"$9.100,00","v":9100,"k":"0701575362288","l":"img_479","z":10},{"i":719,"c":1,"u":0,"d":"FUNDA NOTEBOOK 14 PULGADAS","p":"$25.000,00","v":25000,"k":"Sin Clave","l":"img_719","z":10},{"i":720,"c":1,"u":0,"d":"FUNDA PARA NOTEBOOK DE 15 PULGADAS","p":"$30.000,00","v":30000,"k":"Sin Clave","l":"img_720","z":10},{"i":517,"c":1,"u":0,"d":"JOYSTICK USB UNIVERSAL PARA PC","p":"$12.000,00","v":12000,"k":"JOYPCUNIVERSAL","l":"img_517","z":10},{"i":174,"c":1,"u":0,"d":"LUZ LED USB","p":"$1.000,00","v":1000,"k":"2014110608092","l":"img_174","z":10},{"i":391,"c":1,"u":0,"d":"MOUSE GAMER USB ONLY M50","p":"$7.200,00","v":7200,"k":"112404006","l":"img_391","z":10},{"i":482,"c":1,"u":0,"d":"MOUSE GAMER USB SEISA DN-C543","p":"$9.500,00","v":9500,"k":"6290132554135","l":"img_482","z":10},{"i":495,"c":1,"u":0,"d":"MOUSE INALAMBRICO ONLY","p":"$7.000,00","v":7000,"k":"112404019","l":"img_495","z":10},{"i":8,"c":1,"u":0,"d":"MOUSE INALAMBRICO SEISA","p":"$9.500,00","v":9500,"k":"3290142547175","l":"img_8","z":10},{"i":760,"c":1,"u":0,"d":"MOUSE INALAMBRICO YEXA","p":"$8.400,00","v":8400,"k":"Sin Clave","l":"img_760","z":10},{"i":669,"c":1,"u":0,"d":"MOUSE OPTICO DINAX MOUP02","p":"$3.000,00","v":3000,"k":"7798145013360","l":"img_669","z":10},{"i":264,"c":1,"u":0,"d":"MOUSE OPTICO SEISA DNN603","p":"$3.500,00","v":3500,"k":"6290132557730","l":"img_264","z":10},{"i":631,"c":1,"u":0,"d":"MOUSE OPTICO USB MC-01","p":"$3.000,00","v":3000,"k":"MC-01","l":"img_631","z":10},{"i":481,"c":1,"u":0,"d":"MOUSE OPTICO USB ONLY FV-55","p":"$4.500,00","v":4500,"k":"122404012","l":"img_481","z":10},{"i":176,"c":1,"u":0,"d":"MOUSE PAD CON ALMOHADILLA","p":"$2.700,00","v":2700,"k":"2134","l":"img_176","z":10},{"i":281,"c":1,"u":0,"d":"MOUSE USB ONLY 220","p":"$2.500,00","v":2500,"k":"116300463","l":"img_281","z":10},{"i":60,"c":1,"u":0,"d":"MULTIPUERTO DOBLE ALIMENTACION 3USB + MINI USB","p":"$1.000,00","v":1000,"k":"6290132551660","l":"img_60","z":10},{"i":152,"c":1,"u":0,"d":"MULTIPUERTO USB 4 PUERTOS CON BOTON DE CORTE","p":"$7.000,00","v":7000,"k":"6290132549322","l":"img_152","z":10},{"i":662,"c":1,"u":0,"d":"MULTIPUERTO USB 7 PUERTOS CON BOTON DE CORTE INDEPENDIENTE","p":"$9.000,00","v":9000,"k":"0701575361861","l":"img_662","z":10},{"i":293,"c":1,"u":0,"d":"MULTIPUERTO USB DE 3 PUERTOS","p":"$3.500,00","v":3500,"k":"HUBUSB3P","l":"img_293","z":10},{"i":54,"c":1,"u":0,"d":"PLACA USB BLUETOOTH MALIBU","p":"$2.100,00","v":2100,"k":"MALIBUWIRELESS","l":"img_54","z":10},{"i":480,"c":1,"u":0,"d":"SOPORTE DE ALUMINIO PARA NOTEBOOK","p":"$15.500,00","v":15500,"k":"6290132571958","l":"img_480","z":10},{"i":577,"c":1,"u":0,"d":"TECLADO GAMER ILUMINATE KEYBOARD AOAS M-888","p":"$23.000,00","v":23000,"k":"6972543651404","l":"img_577","z":10},{"i":705,"c":1,"u":0,"d":"TECLADO INALAMBRICO YELANDAR","p":"$15.540,00","v":15540,"k":"Sin Clave","l":"img_705","z":10},{"i":378,"c":1,"u":0,"d":"TECLADO USB GLOBAL KB103","p":"$7.000,00","v":7000,"k":"KB227","l":"img_378","z":10},{"i":726,"c":1,"u":0,"d":"TECLADO USB XAEA","p":"$9.700,00","v":9700,"k":"Sin Clave","l":"img_726","z":10},{"i":368,"c":10,"u":0,"d":"FUNDA DE SILICONA PARA TABLET DE 10\" ONLY","p":"$6.500,00","v":6500,"k":"6220102000006","l":"img_368","z":10},{"i":367,"c":10,"u":0,"d":"FUNDA TIPO LIBRO PARA TABLET DE 10\" COLOURFUL CASE MOD NC-04","p":"$8.500,00","v":8500,"k":"2003051636042","l":"img_367","z":10},{"i":412,"c":10,"u":0,"d":"FUNDA TIPO LIBRO PARA TABLET DE 8\"","p":"$5.000,00","v":5000,"k":"FUNTAB8","l":"img_412","z":10},{"i":544,"c":4,"u":0,"d":"CONTROL REMOTO UNIVERSAL \"DINAX\" PARA LED\/LCD","p":"$4.500,00","v":4500,"k":"7798145005068","l":"img_544","z":10},{"i":492,"c":4,"u":0,"d":"CONTROL REMOTO UNIVERSAL PARA SMART TV","p":"$5.500,00","v":5500,"k":"CONTROLUNIVSMARTV","l":"img_492","z":10},{"i":490,"c":4,"u":0,"d":"SOPORTE DE BRAZO REFORZADO MOVIL PARA TV DE 14\" A 55\" - SUONO","p":"$18.000,00","v":18000,"k":"701575361359","l":"img_490","z":10},{"i":108,"c":4,"u":0,"d":"SOPORTE FIJO PARA TV LED - LCD 14\" A 42\"","p":"$5.500,00","v":5500,"k":"7790000100826","l":"img_108","z":10},{"i":109,"c":4,"u":0,"d":"SOPORTE FIJO PARA TV LED - LCD 26\" A 63\"","p":"$9.500,00","v":9500,"k":"PDP26-55","l":"img_109","z":10},{"i":698,"c":4,"u":0,"d":"SOPORTE FIJO PARA TV XTRATECH 14\" A 42\"","p":"$5.500,00","v":5500,"k":"Sin Clave","l":"img_698","z":10},{"i":652,"c":4,"u":0,"d":"TV BOX FIRE TV STICK 10K 2GB RAM 16GB ALMACENAMIENTO INTERNO","p":"$48.000,00","v":48000,"k":"8456020210318","l":"img_652","z":10},{"i":640,"c":17,"u":0,"d":"CARGADOR 12V GEAR PARA VEHICULO TIPO C 4.8AMP","p":"$3.500,00","v":3500,"k":"MOD-A015","l":"img_640","z":10},{"i":75,"c":17,"u":0,"d":"CARGADOR DE CELULAR PARA AUTO V8 3.1 MAH ONLY MOD CARG12V","p":"$3.600,00","v":3600,"k":"20301230000011","l":"img_75","z":10},{"i":66,"c":17,"u":0,"d":"MINI SOPORTE CELULAR DE AUTO (ART. SIN GARANTIA)","p":"$1.500,00","v":1500,"k":"6940351166601","l":"img_66","z":10},{"i":9,"c":17,"u":13,"d":"PARA AUTOMOVIL 2 PUERTOS USB MOD ADC-22 \"ONLY\"","p":"$340,00","v":340,"k":"ADC22","l":"img_9","z":10},{"i":353,"c":17,"u":0,"d":"PARA AUTOMOVIL V8 12V \"OKEY\"","p":"$1.900,00","v":1900,"k":"2030123000008","l":"img_353","z":10},{"i":24,"c":17,"u":0,"d":"PARA AUTOMOVIL V8 12V \"PRO21\"","p":"$1.700,00","v":1700,"k":"PRO21","l":"img_24","z":10},{"i":273,"c":17,"u":0,"d":"SOPORTE DE CELULAR PARA AUTOMOVIL","p":"$6.700,00","v":6700,"k":"3780201371372","l":"img_273","z":10},{"i":19,"c":17,"u":0,"d":"SOPORTE UNIVERSAL PARA AUTO","p":"$4.500,00","v":4500,"k":"6004","l":"img_19","z":10},{"i":39,"c":17,"u":0,"d":"SOPORTE UNIVERSAL PARA AUTO OHOYO","p":"$6.000,00","v":6000,"k":"6011","l":"img_39","z":10},{"i":734,"c":2,"u":41,"d":"ADAPTADOR 220V INTERNACIONAL VIAJERO AX-097","p":"$8.800,00","v":8800,"k":"Sin Clave","l":"img_734","z":10},{"i":178,"c":2,"u":0,"d":"ADAPTADOR BIFURCADOR DE AUDIO","p":"$1.500,00","v":1500,"k":"6940351165383","l":"img_178","z":10},{"i":653,"c":2,"u":0,"d":"ADAPTADOR BLUETOOTH 5.1","p":"$4.500,00","v":4500,"k":"6920201211217","l":"img_653","z":10},{"i":307,"c":2,"u":0,"d":"ADAPTADOR DE AUDIO BLUETOOTH USB AUTOMOVIL COUBER COU-BT1","p":"$2.000,00","v":2000,"k":"6940351152017","l":"img_307","z":10},{"i":416,"c":2,"u":0,"d":"ADAPTADOR DE AUDIO HEMBRA A 2 JACK MACHO","p":"$1.500,00","v":1500,"k":"ADAN031","l":"img_416","z":10},{"i":496,"c":2,"u":0,"d":"ADAPTADOR DE AUDIO IPHONE A JACK 3.5 MM BLANCO","p":"$6.000,00","v":6000,"k":"115400701","l":"img_496","z":10},{"i":621,"c":2,"u":0,"d":"ADAPTADOR DE AUDIO JACK 3.5MM A FICHA C","p":"$1.500,00","v":1500,"k":"ADAPTADORAUDIOTIPOC","l":"img_621","z":10},{"i":175,"c":2,"u":0,"d":"ADAPTADOR DE TARJETAS DE MEMORIA OTG + USB","p":"$1.600,00","v":1600,"k":"ITECTUC14","l":"img_175","z":10},{"i":280,"c":2,"u":0,"d":"ADAPTADOR ENCHUFE AMERICANO A ARGENTINO PATA RECTA A OBLICUA","p":"$1.200,00","v":1200,"k":"ITECTUC07","l":"img_280","z":10},{"i":593,"c":2,"u":0,"d":"ADAPTADOR HDMI A 2 HDMI","p":"$4.500,00","v":4500,"k":"114202003","l":"img_593","z":10},{"i":106,"c":2,"u":0,"d":"ADAPTADOR HDMI A MINI HDMI","p":"$2.000,00","v":2000,"k":"ITECTUC09","l":"img_106","z":10},{"i":27,"c":2,"u":0,"d":"ADAPTADOR MICRO SD A USB","p":"$1.200,00","v":1200,"k":"ITECTUC10","l":"img_27","z":10},{"i":94,"c":2,"u":0,"d":"ADAPTADOR OTG USB TIPO C","p":"$900,00","v":900,"k":"ITECTUC12","l":"img_94","z":10},{"i":99,"c":2,"u":0,"d":"ADAPTADOR OTG V8 MICRO USB","p":"$400,00","v":400,"k":"6940351148676","l":"img_99","z":10},{"i":418,"c":2,"u":0,"d":"ADAPTADOR OTG V8 SEISA MOD HT-117E","p":"$400,00","v":400,"k":"HT117E","l":"img_418","z":10},{"i":91,"c":2,"u":0,"d":"ADAPTADOR SIM 3 EN 1","p":"$1.000,00","v":1000,"k":"ITECTUC11","l":"img_91","z":10},{"i":262,"c":2,"u":0,"d":"ADAPTADOR USB 3.1 TIPO C A JACK 3,5MM + JACK CARGA USB C","p":"$4.000,00","v":4000,"k":"ITECTUC15","l":"img_262","z":10},{"i":436,"c":27,"u":0,"d":"CALCULADORA CIENTIFICA GAONA","p":"$6.500,00","v":6500,"k":"7790000168277","l":"img_436","z":10},{"i":330,"c":27,"u":0,"d":"CALCULADORA CIENTIFICA MARLIN MOD MA1805","p":"$4.500,00","v":4500,"k":"8439715080892","l":"img_330","z":10},{"i":331,"c":27,"u":0,"d":"CALCULADORA DE BOLSILLO MOD CALCU8D402","p":"$2.500,00","v":2500,"k":"CALCU-8D-402","l":"img_331","z":10},{"i":628,"c":27,"u":0,"d":"CALCULADORA DE ESCRITORIO KENKO KK-1200V","p":"$9.500,00","v":9500,"k":"KK-1200V","l":"img_628","z":10},{"i":707,"c":5,"u":0,"d":"AURICULAR BLUETOOTH AIR8PRO BULLTEC","p":"$18.700,00","v":18700,"k":"Sin Clave","l":"img_707","z":10},{"i":601,"c":5,"u":0,"d":"AURICULAR BLUETOOTH CON VISOR A6S PRO","p":"$8.000,00","v":8000,"k":"Sin Clave","l":"img_601","z":10},{"i":645,"c":5,"u":0,"d":"AURICULAR BLUETOOTH M10 PRO V5.3","p":"$9.500,00","v":9500,"k":"M10PROV5.3","l":"img_645","z":10},{"i":429,"c":5,"u":0,"d":"AURICULAR BLUETOOTH MIXOR LOCURA","p":"$9.000,00","v":9000,"k":"1104020930100","l":"img_429","z":10},{"i":727,"c":5,"u":0,"d":"AURICULAR BLUETOOTH MODX-708 ROSA","p":"$11.000,00","v":11000,"k":"Sin Clave","l":"img_727","z":10},{"i":450,"c":5,"u":0,"d":"AURICULAR BLUETOOTH NOGA BTWINS 2","p":"$7.000,00","v":7000,"k":"7798137713889","l":"img_450","z":10},{"i":522,"c":5,"u":0,"d":"AURICULAR BLUETOOTH NOGAN UT-15","p":"$7.500,00","v":7500,"k":"6902483200158","l":"img_522","z":10},{"i":761,"c":5,"u":0,"d":"AURICULAR BLUETOOTH RADIANCE XAEA","p":"$50.050,00","v":50050,"k":"Sin Clave","l":"img_761","z":10},{"i":637,"c":5,"u":0,"d":"AURICULAR BLUETOOTH TIPO VINCHA","p":"$13.000,00","v":13000,"k":"MOD701","l":"img_637","z":10},{"i":639,"c":5,"u":0,"d":"AURICULAR BLUETOOTH TIPO VINCHA CON CANCELACION DE SONIDO ZYFER XAEA - CALIDAD PREMIUM","p":"$50.000,00","v":50000,"k":"MOD704","l":"img_639","z":10},{"i":635,"c":5,"u":10,"d":"AURICULAR BLUETOOTH TIPO VINCHA CROWS","p":"$13.000,00","v":13000,"k":"MOD706","l":"img_635","z":10},{"i":667,"c":5,"u":0,"d":"AURICULAR BLUETOOTH TIPO VINCHA DINAX P47","p":"$8.500,00","v":8500,"k":"7798145014640","l":"img_667","z":10},{"i":638,"c":5,"u":0,"d":"AURICULAR BLUETOOTH TIPO VINCHA STOCK","p":"$18.000,00","v":18000,"k":"MOD702","l":"img_638","z":10},{"i":690,"c":5,"u":0,"d":"AURICULAR BT MODS-701 - STOCK - BLANCO","p":"$12.000,00","v":12000,"k":"Sin Clave","l":"img_690","z":10},{"i":736,"c":5,"u":88,"d":"AURICULAR BT TIPOVINCHA MODX-707 KIDS","p":"$9.000,00","v":9000,"k":"Sin Clave","l":"img_736","z":10},{"i":665,"c":5,"u":0,"d":"AURICULAR CON CABLE GAMER CON MICROFONO","p":"$6.000,00","v":6000,"k":"0305241540125","l":"img_665","z":10},{"i":126,"c":5,"u":0,"d":"AURICULAR INALAMBRICO 5 EN 1 SEISA","p":"$28.000,00","v":28000,"k":"6936308200450","l":"img_126","z":10},{"i":766,"c":5,"u":0,"d":"AURICULAR MANOS LIBRES CON CABLE YEXA","p":"$2.000,04","v":2000.04,"k":"Sin Clave","l":"img_766","z":10},{"i":668,"c":5,"u":0,"d":"AURICULAR MANOS LIBRES DINAX DX-EARMIC80","p":"$1.300,00","v":1300,"k":"7798145011076","l":"img_668","z":10},{"i":341,"c":5,"u":0,"d":"AURICULAR MANOS LIBRES MOD 22 IMIT. SAMSUNG","p":"$2.500,00","v":2500,"k":"113002201","l":"img_341","z":10},{"i":466,"c":5,"u":0,"d":"AURICULAR MANOS LIBRES MOD24 NEGRO","p":"$1.800,00","v":1800,"k":"1109010240150","l":"img_466","z":10},{"i":317,"c":5,"u":0,"d":"AURICULAR MANOS LIBRES ROMPE OIDOS 3 BLANCO \"ONLY\"","p":"$2.100,00","v":2100,"k":"113002302","l":"img_317","z":10},{"i":354,"c":5,"u":0,"d":"AURICULAR MANOS LIBRES ROMPE OIDOS 3 NEGRO \"ONLY\"","p":"$2.100,00","v":2100,"k":"113002301","l":"img_354","z":10},{"i":741,"c":5,"u":0,"d":"AURICULAR MANOS LIBRES ROMPE OIDOS 5 - YEXA","p":"$2.400,00","v":2400,"k":"Sin Clave","l":"img_741","z":10},{"i":472,"c":5,"u":0,"d":"AURICULAR MANOS LIBRES SAMSUNG AKG S10+ BLACK","p":"$2.700,00","v":2700,"k":"2400002406912","l":"img_472","z":10},{"i":471,"c":5,"u":0,"d":"AURICULAR MANOS LIBRES SAMSUNG SY-104","p":"$2.000,00","v":2000,"k":"7701817378940","l":"img_471","z":10},{"i":528,"c":5,"u":0,"d":"AURICULAR MANOS LIBRES SANSUNG AKG S10+ GREY","p":"$2.900,00","v":2900,"k":"2400002406929","l":"img_528","z":10},{"i":767,"c":5,"u":0,"d":"AURICULAR MANOS LIBRES TIPO C CON CABLE","p":"$5.200,00","v":5200,"k":"Sin Clave","l":"img_767","z":10},{"i":756,"c":5,"u":0,"d":"AURICULAR TIPO C","p":"$11.602,50","v":11602.5,"k":"Sin Clave","l":"img_756","z":10},{"i":276,"c":5,"u":0,"d":"AURICULAR TIPO VINCHA BLUETOOTH BT019","p":"$22.000,00","v":22000,"k":"6290132561119","l":"img_276","z":10},{"i":314,"c":5,"u":0,"d":"AURICULAR TIPO VINCHA BLUETOOTH GLOBAL (RADIO + SLOT S\/D)","p":"$15.000,00","v":15000,"k":"AURIBTGLOBAL","l":"img_314","z":10},{"i":540,"c":5,"u":0,"d":"AURICULAR TIPO VINCHA ONLY MOD60-20 (NEGRO Y AZUL)","p":"$9.000,00","v":9000,"k":"110232105","l":"img_540","z":10},{"i":318,"c":5,"u":0,"d":"AURICULAR TIPO VINCHA ONLY MOD60-20 (NEGRO Y BLANCO)","p":"$9.000,00","v":9000,"k":"110232102","l":"img_318","z":10},{"i":520,"c":5,"u":0,"d":"AURICULAR TIPO VINCHA PARA PC CON MICROFONO NETMARK NM-01","p":"$7.500,00","v":7500,"k":"700306601337","l":"img_520","z":10},{"i":169,"c":5,"u":0,"d":"AURICULAR TIPO VINCHA PARA PC CON MICROFONO NOGA  MIC-119","p":"$7.500,00","v":7500,"k":"7798137380357","l":"img_169","z":10},{"i":474,"c":5,"u":0,"d":"AURICULAR TIPO VINCHA SUONO ARCOIRIS CORONA","p":"$16.000,00","v":16000,"k":"7292082395850","l":"img_474","z":10},{"i":404,"c":5,"u":0,"d":"AURICULARES MANOS LIBRES IRON BOOSTY METAL V3.0 MOD27 ROJO","p":"$3.000,00","v":3000,"k":"11040102702","l":"img_404","z":10},{"i":403,"c":5,"u":0,"d":"AURICULARES MANOS LINRES IRON BOOSTY METAL V3.0 MOD27 NEGRO","p":"$3.000,00","v":3000,"k":"MLI09110","l":"img_403","z":10},{"i":449,"c":5,"u":0,"d":"AURICULARES TIPO VINCHA BLUETOOTH CAT EAR P47M","p":"$12.000,00","v":12000,"k":"731299174089","l":"img_449","z":10},{"i":689,"c":5,"u":0,"d":"MANOS LIBRES - MODX-045 THUNDER-C - XAEA","p":"$4.500,00","v":4500,"k":"Sin Clave","l":"img_689","z":10},{"i":685,"c":5,"u":0,"d":"MANOS LIBRES BT MOD 83 - SIMIL AKG","p":"$6.000,00","v":6000,"k":"1109020830150","l":"img_685","z":10},{"i":686,"c":5,"u":0,"d":"MANOS LIBRES MODO-654 EXPLOSION 1 - ONLY -  NEGRO","p":"$1.800,00","v":1800,"k":"1109010165402","l":"img_686","z":10},{"i":358,"c":20,"u":0,"d":"BATERIA SAMSUNG GRAND PRIME\/J2 PRIME\/J2PRO\/J3 2016\/J5 2015","p":"$7.400,00","v":7400,"k":"1002012201S008","l":"img_358","z":10},{"i":712,"c":43,"u":0,"d":"BALANZA DE COCINA CON BOWL 10KG \"DINAX\"","p":"$8.700,00","v":8700,"k":"Sin Clave","l":"img_712","z":10},{"i":676,"c":43,"u":0,"d":"BALANZA PORTABLE DINAX HASTA 50KG","p":"$8.000,00","v":8000,"k":"7798145013896","l":"img_676","z":10},{"i":694,"c":43,"u":0,"d":"BATIDORA DE CAFE A PILAS","p":"$3.500,00","v":3500,"k":"Sin Clave","l":"img_694","z":10},{"i":714,"c":43,"u":0,"d":"ENCENDEDOR\/CHISPERO RECARGABLE","p":"$8.500,00","v":8500,"k":"Sin Clave","l":"img_714","z":10},{"i":532,"c":43,"u":0,"d":"JUEGO DE CARTAS \"DOS\"","p":"$2.500,00","v":2500,"k":"779803289012","l":"img_532","z":10},{"i":531,"c":43,"u":0,"d":"JUEGO DE CARTAS \"UNO\"","p":"$2.500,00","v":2500,"k":"77981137080","l":"img_531","z":10},{"i":530,"c":43,"u":0,"d":"JUEGO DE NAIPES DE POKER ROYAL","p":"$2.500,00","v":2500,"k":"7702003469381","l":"img_530","z":10},{"i":677,"c":43,"u":0,"d":"PUNTERO LASER GREEN LASER POINTER","p":"$7.000,00","v":7000,"k":"PUNTEROLASER","l":"img_677","z":10},{"i":536,"c":43,"u":0,"d":"RAQUETA MATA MOSQUITOS C\/LINTERNA","p":"$11.200,00","v":11200,"k":"Sin Clave","l":"img_536","z":10},{"i":663,"c":43,"u":0,"d":"TERMO CON MANIJA 1200ML","p":"$24.000,00","v":24000,"k":"2400000249610","l":"img_663","z":10},{"i":465,"c":30,"u":0,"d":"CABLE AUX 3,5 MOD 75 - 2 METROS - METAL","p":"$2.400,00","v":2400,"k":"11130400301","l":"img_465","z":10},{"i":443,"c":30,"u":0,"d":"CABLE AUXILIAR PLUG A PLUG CON MANOS LIBRES","p":"$1.500,00","v":1500,"k":"CVSN014","l":"img_443","z":10},{"i":749,"c":30,"u":0,"d":"CABLE DE PODER TIPO 8 1.5 MTS","p":"$2.500,00","v":2500,"k":"Sin Clave","l":"img_749","z":10},{"i":623,"c":30,"u":0,"d":"CABLE DE PODER TIPO TREBOL","p":"$3.000,00","v":3000,"k":"CABLETIPOTREBOL","l":"img_623","z":10},{"i":695,"c":30,"u":0,"d":"CABLE PARA JOYSTICK PLAY 3 V3","p":"$3.250,00","v":3250,"k":"Sin Clave","l":"img_695","z":10},{"i":541,"c":30,"u":0,"d":"CABLE PLUG 3.5MM A 3.5 MM MACHO 5MTS","p":"$3.000,00","v":3000,"k":"PLUG A PLUG5MTS","l":"null","z":10},{"i":67,"c":30,"u":0,"d":"CABLE POWER PARA PC DE ESCRITORIO","p":"$5.000,00","v":5000,"k":"CABLPOWR","l":"img_67","z":10},{"i":393,"c":6,"u":0,"d":"CABLE AUDIO AUXILIAR 3.1 A 3.1 1MTS","p":"$1.500,00","v":1500,"k":"140000075","l":"img_393","z":10},{"i":692,"c":6,"u":0,"d":"CABLE AUX 3,5 MOD05 - 1 METRO - BLANCO","p":"$1.800,00","v":1800,"k":"Sin Clave","l":"img_692","z":10},{"i":325,"c":6,"u":0,"d":"CABLE AUXILIAR 2 RCA MACHO A 2 RCA MACHO 7 MTS SUELTO","p":"$6.000,00","v":6000,"k":"2RCA7MTS","l":"img_325","z":10},{"i":323,"c":6,"u":0,"d":"CABLE AUXILIAR 3 RCA MACHO A 3 RCA MACHO 1,5 MTS SUELTO","p":"$1.400,00","v":1400,"k":"3RCASUELTO","l":"img_323","z":10},{"i":10,"c":6,"u":0,"d":"CABLE AUXILIAR PLUG A PLUG 3MTS NOGANET","p":"$2.400,00","v":2400,"k":"2006","l":"img_10","z":10},{"i":153,"c":6,"u":0,"d":"CABLE DE AUDIO 2 RCA A 2 RCA 7MTS","p":"$3.000,00","v":3000,"k":"2067","l":"img_153","z":10},{"i":320,"c":6,"u":0,"d":"CABLE DE AUDIO OPTICO","p":"$3.200,00","v":3200,"k":"CABCOPTICO","l":"img_320","z":10},{"i":168,"c":6,"u":0,"d":"CABLE DE AUDIO PLUG A PLUG 1,5 MTS","p":"$1.200,00","v":1200,"k":"6290132558225","l":"img_168","z":10},{"i":6,"c":6,"u":0,"d":"CABLE DE VIDEO 3RCA A PLUG 1.5 MTS","p":"$1.500,00","v":1500,"k":"2A1-405","l":"img_6","z":10},{"i":5,"c":6,"u":0,"d":"CABLE EXTENSOR 3,5 MACHO A 3,5 HEMBRA 1,8 MTS","p":"$1.800,00","v":1800,"k":"2022","l":"img_5","z":10},{"i":196,"c":6,"u":0,"d":"CABLE HDMI 1 METRO","p":"$2.000,00","v":2000,"k":"6290132556191","l":"img_196","z":10},{"i":2,"c":6,"u":0,"d":"CABLE HDMI 1,5 MTS MALLADO","p":"$2.800,00","v":2800,"k":"6940351170790","l":"img_2","z":10},{"i":3,"c":6,"u":0,"d":"CABLE HDMI A RCA 3MTS","p":"$4.000,00","v":4000,"k":"2026","l":"img_3","z":10},{"i":26,"c":6,"u":0,"d":"CABLE HDMI MALLADO 3 MTS","p":"$3.800,00","v":3800,"k":"123B","l":"img_26","z":10},{"i":73,"c":6,"u":0,"d":"CABLE HDMI MALLADO 5 MTS","p":"$5.400,00","v":5400,"k":"HDMI5M","l":"img_73","z":10},{"i":324,"c":6,"u":0,"d":"CABLE PLUG 3.5MM A 2 RCA MACHO 1.5 MTS","p":"$2.500,00","v":2500,"k":"PLUG2RCA1.5MTS","l":"img_324","z":10},{"i":326,"c":6,"u":0,"d":"CABLE PLUG 3.5MM A 3 RCA MACHO XINYUE 1.5 MTS","p":"$1.500,00","v":1500,"k":"6900214201962","l":"img_326","z":10},{"i":12,"c":6,"u":0,"d":"CABLE PLUG A 2 RCA","p":"$1.200,00","v":1200,"k":"2013","l":"img_12","z":10},{"i":387,"c":6,"u":0,"d":"CABLE PLUG A 2 RCA 1.5 MTS SKAY WAY","p":"$2.000,00","v":2000,"k":"3780201370016","l":"img_387","z":10},{"i":82,"c":7,"u":0,"d":"CABLE ALARGADOR USB MACHO A HEMBRA 3MTS","p":"$3.900,00","v":3900,"k":"2051","l":"img_82","z":10},{"i":420,"c":7,"u":0,"d":"CABLE DE DATOS USB V3 1METRO","p":"$1.500,00","v":1500,"k":"USBV31M","l":"img_420","z":10},{"i":275,"c":7,"u":9,"d":"CABLE DE DATOS USB V3 2MTS \"GLOBAL\"","p":"$1.900,00","v":1900,"k":"CABLEMINIBUSBXT2MB","l":"img_275","z":10},{"i":434,"c":7,"u":0,"d":"CABLE USB PARA IMPRESORA 1.5 MTS DINAX","p":"$900,00","v":900,"k":"7798145006270","l":"img_434","z":10},{"i":124,"c":44,"u":0,"d":"CABLE DE DATOS PARA IPHONE SKY","p":"$2.500,00","v":2500,"k":"SK-CB02","l":"img_124","z":10},{"i":95,"c":44,"u":0,"d":"CABLE DE DATOS USB V8\/IPHONE 5\/6\/7","p":"$3.000,00","v":3000,"k":"SEND+","l":"img_95","z":10},{"i":78,"c":44,"u":0,"d":"CABLE REFORZADO PARA IPHONE 5\/6\/7 FICHA FINA A USB","p":"$4.500,00","v":4500,"k":"8178102025831","l":"img_78","z":10},{"i":587,"c":44,"u":0,"d":"CABLE TIPO C A IPHONE","p":"$4.500,00","v":4500,"k":"Sin Clave","l":"img_587","z":10},{"i":713,"c":44,"u":0,"d":"CABLE USB A A IPHONE THOR \"XAEA\"","p":"$2.800,00","v":2800,"k":"Sin Clave","l":"img_713","z":10},{"i":462,"c":39,"u":0,"d":"CABLE DE DATOS TIPO C 2MTS - SIMIL ORIGINAL","p":"$2.500,00","v":2500,"k":"110727002","l":"img_462","z":10},{"i":497,"c":39,"u":0,"d":"CABLE DE DATOS TIPO C A TIPO C ONLY 3.1 AMP BLANCO","p":"$2.700,00","v":2700,"k":"110718001","l":"img_497","z":10},{"i":435,"c":39,"u":0,"d":"CABLE DE DATOS TIPO C A TIPO C TIME","p":"$2.700,00","v":2700,"k":"723540565869","l":"img_435","z":10},{"i":253,"c":39,"u":0,"d":"CABLE DE DATOS TIPO C GENERICO","p":"$1.500,00","v":1500,"k":"6940351147976","l":"img_253","z":10},{"i":507,"c":39,"u":0,"d":"CABLE DE DATOS USB TIPO C 3.1 AMP MOD 50 ONLY NEGRO","p":"$2.500,00","v":2500,"k":"110716405","l":"img_507","z":10},{"i":671,"c":39,"u":0,"d":"CABLE DINAX TIPO C A TIPO C 5.1A 1MTS","p":"$3.000,00","v":3000,"k":"7798145010741","l":"img_671","z":10},{"i":615,"c":39,"u":0,"d":"CABLE FLOX 4 EN 1 TIPO C A C - 65W 1.2MTS","p":"$5.500,00","v":5500,"k":"Sin Clave","l":"img_615","z":10},{"i":710,"c":39,"u":0,"d":"CABLE TIPO C 7.1AMP MIXOR IMPULSO","p":"$1.800,00","v":1800,"k":"Sin Clave","l":"img_710","z":10},{"i":711,"c":39,"u":0,"d":"CABLE TIPO C A C OTAWA 30W","p":"$2.000,00","v":2000,"k":"Sin Clave","l":"img_711","z":10},{"i":672,"c":39,"u":0,"d":"CABLE TIPO C A C PARA IPHONE SX-120","p":"$4.000,00","v":4000,"k":"7798145015661","l":"img_672","z":10},{"i":740,"c":39,"u":9,"d":"CABLE USB A A C 3.1AMP TIME","p":"$2.200,00","v":2200,"k":"Sin Clave","l":"img_740","z":10},{"i":316,"c":36,"u":0,"d":"CABLE DE DATOS MOD35 USB V8 3.1 A ONLY AZUL","p":"$1.800,00","v":1800,"k":"110716002","l":"img_316","z":10},{"i":506,"c":36,"u":0,"d":"CABLE DE DATOS MOD35 USB V8 3.1 A ONLY GRIS","p":"$2.000,00","v":2000,"k":"110716004","l":"img_506","z":10},{"i":216,"c":36,"u":0,"d":"CABLE DE DATOS TRANYOO USB A V8 5A","p":"$1.700,00","v":1700,"k":"6970791121281","l":"img_216","z":10},{"i":421,"c":36,"u":0,"d":"CABLE DE DATOS USB 2.4AMP V8 ONLY MOD45 AZUL","p":"$1.700,00","v":1700,"k":"110716302","l":"img_421","z":10},{"i":271,"c":36,"u":0,"d":"CABLE DE DATOS USB A V8 3.1 AMP METAL \"LION\"","p":"$2.700,00","v":2700,"k":"120712301","l":"img_271","z":10},{"i":35,"c":36,"u":0,"d":"CABLE DE DATOS USB A V8 DE 2MTS \"SKY\"","p":"$1.000,00","v":1000,"k":"CB19","l":"img_35","z":10},{"i":501,"c":36,"u":0,"d":"CABLE DE DATOS USB V8 1.5 AMP BLANCO\/CELESTE MOD24-21","p":"$1.700,00","v":1700,"k":"100703302","l":"img_501","z":10},{"i":380,"c":36,"u":0,"d":"CABLE DE DATOS USB V8 1.5 AMP MOD22-20 ROJO","p":"$1.500,00","v":1500,"k":"100702704","l":"img_380","z":10},{"i":504,"c":36,"u":0,"d":"CABLE DE DATOS USB V8 1.5 AMP MOD22-21 BLANCO","p":"$1.500,00","v":1500,"k":"100702502.","l":"img_504","z":10},{"i":383,"c":36,"u":0,"d":"CABLE DE DATOS USB V8 1.5 AMP ROJO\/NEGRO MOD24-21","p":"$1.700,00","v":1700,"k":"100703201","l":"img_383","z":10},{"i":348,"c":36,"u":0,"d":"CABLE DE DATOS USB V8 2.4 MOD 42 \"ONLY\"","p":"$1.800,00","v":1800,"k":"110716204","l":"img_348","z":10},{"i":349,"c":36,"u":0,"d":"CABLE DE DATOS USB V8 2.4A MOD 39 \"ONLY\"","p":"$1.800,00","v":1800,"k":"110716104","l":"img_349","z":10},{"i":339,"c":36,"u":0,"d":"CABLE DE DATOS USB V8 3.1 AMP \"ONLY\" MOD48 BLANCO","p":"$2.000,00","v":2000,"k":"110716402","l":"img_339","z":10},{"i":346,"c":36,"u":0,"d":"CABLE DE DATOS USB V8 3.1 AMP \"ONLY\" MOD48 NEGRO","p":"$2.000,00","v":2000,"k":"110716401","l":"img_346","z":10},{"i":441,"c":36,"u":0,"d":"CABLE DE DATOS USB V8 3.1A MOD 35 NEGRO","p":"$2.000,00","v":2000,"k":"110716001","l":"img_441","z":10},{"i":442,"c":36,"u":0,"d":"CABLE DE DATOS USB V8 3.1A MOD 35 ROJO","p":"$2.000,00","v":2000,"k":"110716003","l":"img_442","z":10},{"i":591,"c":36,"u":0,"d":"CABLE DE DATOS USB V8 3.1MAH MACARON AMARILLO","p":"$2.000,00","v":2000,"k":"110733076","l":"img_591","z":10},{"i":590,"c":36,"u":0,"d":"CABLE DE DATOS USB V8 3.1MAH MACARON AZUL","p":"$2.000,00","v":2000,"k":"110733078","l":"img_590","z":10},{"i":589,"c":36,"u":0,"d":"CABLE DE DATOS USB V8 3.1MAH MACARON ROSA","p":"$2.000,00","v":2000,"k":"110733077","l":"img_589","z":10},{"i":592,"c":36,"u":0,"d":"CABLE DE DATOS USB V8 3.1MAH MACARON VERDE","p":"$2.000,00","v":2000,"k":"110733075","l":"img_592","z":10},{"i":464,"c":36,"u":0,"d":"CABLE DE DATOS USB V8 4.2A ONLY - MOD 45 BLANCO\/NEGRO","p":"$2.000,00","v":2000,"k":"110733114","l":"img_464","z":10},{"i":463,"c":36,"u":0,"d":"CABLE DE DATOS USB V8 4.2A ONLY - MOD 45 ROJO\/NEGRO","p":"$2.000,00","v":2000,"k":"110733116","l":"img_463","z":10},{"i":252,"c":36,"u":0,"d":"CABLE DE DATOS USB V8 MALLADO DE 2MTS \"SEISA\"","p":"$3.000,00","v":3000,"k":"6933138620175","l":"img_252","z":10},{"i":453,"c":36,"u":0,"d":"CABLE DE DATOS USB V8 NEGRO","p":"$1.500,00","v":1500,"k":"100702401","l":"img_453","z":10},{"i":198,"c":9,"u":0,"d":"CABEZAL CARGADOR 1.5 AMP SIN CABLE \"OKEY\"","p":"$2.000,00","v":2000,"k":"140410501","l":"img_198","z":10},{"i":257,"c":9,"u":0,"d":"CABEZAL CARGADOR SIN CABLE 5 V, 2 AMP \"KOLKE\"","p":"$1.750,00","v":1750,"k":"7730737010524","l":"img_257","z":10},{"i":610,"c":9,"u":0,"d":"CARGADOR DE PILAS USB \"DINAX\"","p":"$7.000,00","v":7000,"k":"7798145007765","l":"img_610","z":10},{"i":702,"c":9,"u":0,"d":"CARGADOR MOTOROLA TURBO POWER 30+ USB A MICRO(V8)","p":"$8.000,00","v":8000,"k":"Sin Clave","l":"img_702","z":10},{"i":764,"c":9,"u":0,"d":"CARGADOR TIPO C 30W XAEA INTENSIFY","p":"$7.215,00","v":7215,"k":"Sin Clave","l":"img_764","z":10},{"i":516,"c":9,"u":0,"d":"CARGADOR TIPO C 4,2 AMP \"SEIS\"","p":"$4.200,00","v":4200,"k":"2400002160265","l":"img_516","z":10},{"i":130,"c":9,"u":0,"d":"CARGADOR UNIVERSAL DE BATERIAS CON VISOR LED \"DINAX\"","p":"$4.500,00","v":4500,"k":"723540566606","l":"img_130","z":10},{"i":691,"c":9,"u":0,"d":"CARGADOR WIRELESS MODS-722 ION - ONLY - BLANCO","p":"$8.000,00","v":8000,"k":"Sin Clave","l":"img_691","z":10},{"i":696,"c":9,"u":0,"d":"POWER BANK HYTOSHI 20000 MAH PB-40","p":"$29.000,00","v":29000,"k":"Sin Clave","l":"img_696","z":10},{"i":763,"c":9,"u":0,"d":"POWER BANK ROCKET 20000MAH","p":"$37.620,00","v":37620,"k":"Sin Clave","l":"img_763","z":10},{"i":627,"c":9,"u":0,"d":"ZAPATILLA CARGADOR 6 PUERTOS USB 3.1A UNIVERSAL POWER","p":"$8.500,00","v":8500,"k":"8388722215813","l":"img_627","z":10},{"i":562,"c":45,"u":0,"d":"CABEZAL CARGADOR IPHONE 15 PRO MAX 35W (SIN CABLE)","p":"$15.000,00","v":15000,"k":"194582664665","l":"img_562","z":10},{"i":525,"c":45,"u":0,"d":"CARGADOR CON CABLE IPHONE PREMIUM IBEK 20W TURBO POWER","p":"$11.000,00","v":11000,"k":"7790839913345","l":"img_525","z":10},{"i":753,"c":45,"u":0,"d":"CARGADOR IPHONE 17 PRO MAX (CABEZAL + CABLE)","p":"$12.000,00","v":12000,"k":"Sin Clave","l":"img_753","z":10},{"i":300,"c":45,"u":0,"d":"CARGADOR POTENCIADO PARA IPHONE 2.0A VERDE MOD XF-83 \"ONLY\"","p":"$9.000,00","v":9000,"k":"100000021","l":"img_300","z":10},{"i":473,"c":38,"u":0,"d":"CABEZAL CARGADOR IBEK PREMIUM TIPO C 7.8A SIN CABLE TURBO POWER","p":"$9.000,00","v":9000,"k":"7790839913321","l":"img_473","z":10},{"i":735,"c":38,"u":13,"d":"CABEZAL CARGADOR SIN CABLE 45W CARGA RAPIDA 1 USB + TIPO C - XAEA","p":"$8.500,00","v":8500,"k":"Sin Clave","l":"img_735","z":10},{"i":708,"c":38,"u":0,"d":"CARGADOR CARGA RAPIDA 45W HYTOSHY","p":"$10.000,00","v":10000,"k":"6920254222840","l":"img_708","z":10},{"i":762,"c":38,"u":0,"d":"CARGADOR CON CABLE TIPO C 45W XAEA RAPTOR","p":"$8.640,00","v":8640,"k":"Sin Clave","l":"img_762","z":10},{"i":555,"c":38,"u":0,"d":"CARGADOR MOTOROLA TURBO POWER 125W TIPO C (CON CABLE)","p":"$11.200,00","v":11200,"k":"6968745687570","l":"img_555","z":10},{"i":556,"c":38,"u":0,"d":"CARGADOR MOTOROLA TURBO POWER 50W TIPO C (CON CABLE)","p":"$8.900,00","v":8900,"k":"6968745687594","l":"img_556","z":10},{"i":641,"c":38,"u":0,"d":"CARGADOR PARA CELULAR  30W INTENSIFY XAEA","p":"$5.000,00","v":5000,"k":"MODA015","l":"img_641","z":10},{"i":287,"c":38,"u":0,"d":"CARGADOR PARA CELULAR TIPO C 4.2A \"DINAX\"","p":"$4.500,00","v":4500,"k":"7798145002128","l":"img_287","z":10},{"i":427,"c":38,"u":0,"d":"CARGADOR PARA CELULAR TIPO C 4.4 A ONLY + 1 PUERTO USB NEGRO","p":"$5.500,00","v":5500,"k":"1108050101002","l":"img_427","z":10},{"i":527,"c":38,"u":0,"d":"CARGADOR PARA CELULAR TIPO C 4.4 ONLY + 1 PUERTO USB BLANCO","p":"$5.500,00","v":5500,"k":"110801092","l":"img_527","z":10},{"i":609,"c":38,"u":0,"d":"CARGADOR TIPO C 35W CON CABLE \"BULLTEC\"","p":"$4.500,00","v":4500,"k":"0102010209","l":"img_609","z":10},{"i":709,"c":38,"u":0,"d":"CARGADOR TIPO C CARGA RAPIDA 20W OGAAN","p":"$7.600,00","v":7600,"k":"Sin Clave","l":"img_709","z":10},{"i":523,"c":38,"u":0,"d":"CARGADOR TIPO C DINAX 3.0A","p":"$3.500,00","v":3500,"k":"7798145008373","l":"img_523","z":10},{"i":681,"c":38,"u":0,"d":"CARGADOR TIPO C SAMSUNG 45W CON CABLE","p":"$8.500,00","v":8500,"k":"CARGSAMSUNGTC45W","l":"img_681","z":10},{"i":701,"c":38,"u":0,"d":"CARGADOR TURBO 50W CON CABLE TIPO C HYTOSHY COLOR NEGRO","p":"$10.200,00","v":10200,"k":"Sin Clave","l":"img_701","z":10},{"i":518,"c":37,"u":0,"d":"CARGADOR C\/CABLE INCORPORADO V8 2.1A LETS","p":"$3.500,00","v":3500,"k":"110801078","l":"img_518","z":10},{"i":351,"c":37,"u":0,"d":"CARGADOR PARA CELULAR V8 1,5 AMP BLANCO \"OKEY\"","p":"$4.000,00","v":4000,"k":"110801029","l":"img_351","z":10},{"i":319,"c":37,"u":0,"d":"CARGADOR PARA CELULAR V8 1,5 AMP NEGRO \"OKEY\"","p":"$3.500,00","v":3500,"k":"110801030","l":"img_319","z":10},{"i":350,"c":37,"u":0,"d":"CARGADOR PARA CELULAR V8 1A \"OKEY\" BLANCO","p":"$3.000,00","v":3000,"k":"120410602","l":"img_350","z":10},{"i":301,"c":37,"u":13,"d":"CARGADOR PARA CELULAR V8 1A \"OKEY\" NEGRO","p":"$3.000,00","v":3000,"k":"120410601","l":"img_301","z":10},{"i":285,"c":37,"u":0,"d":"CARGADOR PARA CELULAR V8 3.1A + 1 PUERTO USB \"MALIBU\"","p":"$5.000,00","v":5000,"k":"8946416945431","l":"img_285","z":10},{"i":426,"c":37,"u":0,"d":"CARGADOR PARA CELULAR V8 4.4AMP + 1 PUERTO USB CABLE INTEGRADO (BLANCO)","p":"$5.500,00","v":5500,"k":"110801090","l":"img_426","z":10},{"i":428,"c":37,"u":0,"d":"CARGADOR PARA CELULAR V8 4.4AMP + 1 PUERTO USB CABLE INTEGRADO (NEGRO)","p":"$5.500,00","v":5500,"k":"110801091","l":"img_428","z":10},{"i":90,"c":37,"u":0,"d":"CARGADOR PARA CELULAR V8 9V CARGA TURBO MOD AC-86 \"ONLY\"","p":"$8.500,00","v":8500,"k":"1030118000006","l":"img_90","z":10},{"i":405,"c":37,"u":0,"d":"CARGADOR PARA CELULAR V8 ONLY MOD03 2.1A + 1 USB NEGRO","p":"$4.200,00","v":4200,"k":"110801074","l":"img_405","z":10},{"i":452,"c":37,"u":0,"d":"CARGADOR PARA CELULAR V8 TIME 2.1A C\/CABLE DESMONTABLE","p":"$3.500,00","v":3500,"k":"723540566064","l":"img_452","z":10},{"i":382,"c":37,"u":0,"d":"CARGADOR V8 CARGA RAPIDA 3.1A + 1 PUERTO USB ONLY (NEGRO)","p":"$5.500,00","v":5500,"k":"110801046","l":"img_382","z":10},{"i":256,"c":32,"u":36,"d":"PARA BICICLETAS","p":"$3.000,00","v":3000,"k":"6940360083340","l":"img_256","z":10},{"i":51,"c":26,"u":0,"d":"CONVERSOR DE VIDEO HDMI A RCA","p":"$12.000,00","v":12000,"k":"6290132555613","l":"img_51","z":10},{"i":76,"c":25,"u":0,"d":"CEPILLO ALISADOR OSR","p":"$27.000,00","v":27000,"k":"6925249990063","l":"img_76","z":10},{"i":558,"c":25,"u":0,"d":"CEPILLO PARA PELO BRUSHES BN1637","p":"$3.000,00","v":3000,"k":"6958420016375","l":"img_558","z":10},{"i":125,"c":25,"u":0,"d":"PLANCHA DE PELO PROFESIONAL OM","p":"$17.000,00","v":17000,"k":"6957952229956","l":"img_125","z":10},{"i":625,"c":25,"u":0,"d":"SECADOR DE PELO ULTRA RÁPIDO BULLTEC DS2442","p":"$52.700,00","v":52700,"k":"DS2442","l":"img_625","z":10},{"i":586,"c":16,"u":0,"d":"BALANZA DE COCINA HASTA 10KG OSR","p":"$7.500,00","v":7500,"k":"Sin Clave","l":"img_586","z":10},{"i":585,"c":16,"u":0,"d":"CONTROL REMOTO UNIVERSAL NVTC V1190","p":"$6.500,00","v":6500,"k":"Sin Clave","l":"img_585","z":10},{"i":128,"c":16,"u":0,"d":"CONTROL REMOTO UNIVERSAL PARA AIRE ACONDICIONADO","p":"$4.700,00","v":4700,"k":"6927259110189","l":"img_128","z":10},{"i":129,"c":16,"u":0,"d":"CONTROL REMOTO UNIVERSAL PARA TV","p":"$4.000,00","v":4000,"k":"6921338633019","l":"img_129","z":10},{"i":306,"c":16,"u":0,"d":"TIMBRE INALAMBRICO A PILAS CONSTADOORBELL 203BCD","p":"$13.200,00","v":13200,"k":"ITECTUC247","l":"img_306","z":10},{"i":612,"c":13,"u":0,"d":"ADAPTADOR INTERNACIONAL","p":"$1.500,00","v":1500,"k":"ADAPTAINTERNACIONAL","l":"img_612","z":10},{"i":455,"c":13,"u":0,"d":"ADAPTADOR PORTALAMPARAS PARA FOCOS","p":"$1.200,00","v":1200,"k":"ADAPTPORTALAMP","l":"img_455","z":10},{"i":295,"c":13,"u":0,"d":"BROCHES METALICOS SUJETA PAPELES BLÍSTER X 3 (COLORES)","p":"$2.000,00","v":2000,"k":"6947860521167","l":"img_295","z":10},{"i":673,"c":13,"u":0,"d":"CANDADO 20 MM TRI CIRCUIT T261","p":"$1.000,00","v":1000,"k":"T261","l":"img_673","z":10},{"i":674,"c":13,"u":0,"d":"CANDADO 63MM T266","p":"$4.200,00","v":4200,"k":"CANDADO63MM","l":"img_674","z":10},{"i":582,"c":13,"u":0,"d":"CANDADO PARA MALETA BRASS PADLOCK 20MM","p":"$1.000,00","v":1000,"k":"CANDADO20MM","l":"img_582","z":10},{"i":583,"c":13,"u":0,"d":"CANDADO PARA MALETA BRASS PADLOCK 25MM","p":"$1.000,00","v":1000,"k":"CANDADO25MM","l":"img_583","z":10},{"i":584,"c":13,"u":0,"d":"CANDADO PARA MALETA BRASS PADLOCK 30MM","p":"$1.000,00","v":1000,"k":"CANDADO30MM","l":"img_584","z":10},{"i":597,"c":13,"u":0,"d":"CANDADO TRICIRCUIT\/SNAKE PADLOCK 50MM","p":"$4.000,00","v":4000,"k":"Sin Clave","l":"img_597","z":10},{"i":334,"c":13,"u":0,"d":"CINTA METRICA \"GIANT\" 7,5 MTS","p":"$5.800,00","v":5800,"k":"CINTAMETRICA7.5MTS","l":"img_334","z":10},{"i":670,"c":13,"u":0,"d":"CINTA METRICA GIANT 5 MTS","p":"$2.900,00","v":2900,"k":"GIANT5MTS","l":"img_670","z":10},{"i":614,"c":13,"u":0,"d":"INFLADOR MULTIUSO","p":"$6.200,00","v":6200,"k":"Sin Clave","l":"img_614","z":10},{"i":605,"c":13,"u":0,"d":"INSTALACION DE CAMARAS","p":"$50.000,00","v":50000,"k":"Sin Clave","l":"img_605","z":10},{"i":748,"c":13,"u":0,"d":"JUEGO DE LLAVE T 24 PIEZAS BISSO","p":"$7.000,00","v":7000,"k":"Sin Clave","l":"img_748","z":10},{"i":675,"c":13,"u":0,"d":"LINTERNA RECARGABLE L-S03","p":"$7.000,00","v":7000,"k":"6988835560033","l":"img_675","z":10},{"i":679,"c":13,"u":0,"d":"LINTERNA USB RECARGABLE","p":"$7.500,00","v":7500,"k":"6920240426528","l":"img_679","z":10},{"i":682,"c":13,"u":0,"d":"LUZ DE EMERGENCIA 30 LED OM","p":"$12.000,00","v":12000,"k":"6973023780256","l":"img_682","z":10},{"i":241,"c":13,"u":0,"d":"SET CAJA DE DESTORNILLADOR DE 15 PIEZAS","p":"$12.000,00","v":12000,"k":"7912103034543","l":"img_241","z":10},{"i":335,"c":13,"u":0,"d":"SET DE DESTORNILLADOR DE 14 PUNTAS \"GRIP SOFT HANDLE\"","p":"$11.500,00","v":11500,"k":"7912103301560","l":"img_335","z":10},{"i":204,"c":13,"u":0,"d":"SET DE DESTORNILLADOR DE PRESICION X 32 PUNTAS","p":"$3.500,00","v":3500,"k":"6921354879224","l":"img_204","z":10},{"i":203,"c":13,"u":0,"d":"SET DE DESTORNILLADORES DE PRESICION DE 11 PUNTAS","p":"$15.000,00","v":15000,"k":"7912103306015","l":"img_203","z":10},{"i":202,"c":13,"u":0,"d":"SET DE DESTORNILLADORES DE PRESICION X 4 PUNTA ESTRELLA","p":"$1.000,00","v":1000,"k":"T6566","l":"img_202","z":10},{"i":201,"c":13,"u":0,"d":"SET DE DESTORNILLADORES T5, T6, T7, T8, T9 Y T10","p":"$2.000,00","v":2000,"k":"2006176100009","l":"img_201","z":10},{"i":205,"c":13,"u":0,"d":"SET DE LLAVES T CRV","p":"$6.000,00","v":6000,"k":"7912103305582","l":"img_205","z":10},{"i":658,"c":13,"u":0,"d":"SET DE LLAVES T QTOOLS 9 PC","p":"$6.000,00","v":6000,"k":"7912103306299","l":"img_658","z":10},{"i":296,"c":13,"u":0,"d":"SET DE PARCHES RUEDAS DE BICICLETAS","p":"$1.500,00","v":1500,"k":"7912103306107","l":"img_296","z":10},{"i":657,"c":13,"u":0,"d":"SET DESTORNILLADOR DE PRECISIÓN","p":"$3.500,00","v":3500,"k":"6965656895889","l":"img_657","z":10},{"i":543,"c":13,"u":0,"d":"TESTER DE VOLTAGE BELIKY","p":"$6.300,00","v":6300,"k":"6910601010688","l":"img_543","z":10},{"i":521,"c":13,"u":0,"d":"TESTER DIGITAL CON BUZZER Y CABLES NETMARK NM-830","p":"$15.500,00","v":15500,"k":"NM-830","l":"img_521","z":10},{"i":579,"c":13,"u":0,"d":"TRINCHETA","p":"$500,00","v":500,"k":"TRINCHETA","l":"img_579","z":10},{"i":678,"c":13,"u":0,"d":"ZAPATILLA EXAGONAL 4 TOMAS UNIVERSALES + 2 PUERTOS USB","p":"$13.000,00","v":13000,"k":"ZAPATILLAEXAGONAL","l":"img_678","z":10},{"i":770,"c":33,"u":0,"d":"CABLE V3 PS3","p":"$3.969,00","v":3969,"k":"Sin Clave","l":"img_770","z":10},{"i":576,"c":33,"u":0,"d":"CONSOLA GAME BOX PLUS","p":"$13.500,00","v":13500,"k":"699252923184","l":"img_576","z":10},{"i":575,"c":33,"u":0,"d":"CONSOLA GAME BOX PLUS CON JOYSTICK","p":"$15.000,00","v":15000,"k":"699252923123","l":"img_575","z":10},{"i":596,"c":33,"u":0,"d":"CONSOLA GAMESTICK X2 3D GAMES","p":"$42.000,00","v":42000,"k":"Sin Clave","l":"img_596","z":10},{"i":270,"c":33,"u":0,"d":"JOYSTICK ANALOGICO PARA PC SEISA","p":"$12.000,00","v":12000,"k":"6290132557204","l":"img_270","z":10},{"i":728,"c":33,"u":0,"d":"JOYSTICK INALAMBRICO PARA PC, SMART PHONE, TV BOX Y TABLET","p":"$20.000,00","v":20000,"k":"Sin Clave","l":"img_728","z":10},{"i":561,"c":33,"u":0,"d":"JOYSTICK PS3 DOUBLESHOCK 03 PS LLL","p":"$18.500,00","v":18500,"k":"6929456926228","l":"img_561","z":10},{"i":488,"c":42,"u":0,"d":"DIFUSOR DE AROMAS (HUMIDIFICADOR)","p":"$9.100,00","v":9100,"k":"MINIHUMIFICADOR","l":"img_488","z":10},{"i":552,"c":42,"u":0,"d":"KIT DUCHADOR DE MANO CON SOPORTE PLASTICO","p":"$7.550,00","v":7550,"k":"1","l":"img_552","z":10},{"i":716,"c":42,"u":0,"d":"RELOJ CUBO DESPERTADOR LUMINOSO","p":"$6.500,00","v":6500,"k":"Sin Clave","l":"img_716","z":10},{"i":580,"c":42,"u":0,"d":"RELOJ DIGITAL ELECTRONIC CLOCK 6510","p":"$9.200,00","v":9200,"k":"Sin Clave","l":"img_580","z":10},{"i":581,"c":12,"u":0,"d":"ARO DE LUZ LED LUZ BLANCA Y CALIDA DINAX CON TRIPODE (10 PULGADAS)","p":"$19.400,00","v":19400,"k":"Sin Clave","l":"img_581","z":10},{"i":485,"c":12,"u":0,"d":"FOCO LED CANDELA 12W - LUZ FRIA","p":"$1.400,00","v":1400,"k":"FOCLEDCANDELA12","l":"img_485","z":10},{"i":566,"c":12,"u":0,"d":"FOCO LED CANDELA 15W FRIA","p":"$1.500,00","v":1500,"k":"FOCOLED15W","l":"img_566","z":10},{"i":242,"c":12,"u":0,"d":"FOCO LED MULTICOLOR GIRATORIO","p":"$4.000,00","v":4000,"k":"6963490156562","l":"img_242","z":10},{"i":539,"c":12,"u":0,"d":"FOCO LED MULTICOLOR GIRATORIO ONLY","p":"$4.000,00","v":4000,"k":"037000001","l":"img_539","z":10},{"i":742,"c":12,"u":0,"d":"LAMPARA LED BAJO ALACENA RECARGABLE CON SENSOR DE MOVIMIENTO","p":"$23.000,00","v":23000,"k":"Sin Clave","l":"img_742","z":10},{"i":74,"c":12,"u":0,"d":"LINTERNA LED RECARGABLE OSR","p":"$10.300,00","v":10300,"k":"OSR881","l":"img_74","z":10},{"i":150,"c":12,"u":0,"d":"LINTERNA RECARGABLE HONGTAI HT3829","p":"$300,00","v":300,"k":"1715","l":"img_150","z":10},{"i":699,"c":12,"u":0,"d":"LINTERNA RECARGABLE MODELO 618","p":"$15.000,00","v":15000,"k":"Sin Clave","l":"img_699","z":10},{"i":263,"c":12,"u":0,"d":"MINI LINTERNA LED RECARGABLE","p":"$5.000,00","v":5000,"k":"6904033419119","l":"img_263","z":10},{"i":598,"c":12,"u":0,"d":"MINI LINTERNA RECARGABLE COB-150","p":"$4.000,00","v":4000,"k":"6895752023582","l":"img_598","z":10},{"i":437,"c":12,"u":0,"d":"REFLECTOR LED 10W LUZ FRIA","p":"$7.000,00","v":7000,"k":"7798347081297","l":"img_437","z":10},{"i":542,"c":12,"u":0,"d":"REFLECTOR LED 30W OSR","p":"$8.400,00","v":8400,"k":"6812412091934","l":"img_542","z":10},{"i":680,"c":12,"u":0,"d":"TIRA LED 2835","p":"$10.200,00","v":10200,"k":"6902021028350","l":"img_680","z":10},{"i":574,"c":12,"u":0,"d":"TIRA LED RGB 5050 5MTS.","p":"$14.500,00","v":14500,"k":"0763571816486","l":"img_574","z":10},{"i":715,"c":41,"u":0,"d":"BURBUJERO INFANTIL","p":"$8.500,00","v":8500,"k":"Sin Clave","l":"img_715","z":10},{"i":649,"c":41,"u":0,"d":"HADA VOLADORA CON SENSOR DE PROXIMIDAD","p":"$7.500,00","v":7500,"k":"HADAVOLADORA","l":"img_649","z":10},{"i":650,"c":41,"u":0,"d":"HELICOPTERO CON SENSOR DE PROXIMIDAD","p":"$9.000,00","v":9000,"k":"HELICOPTERO","l":"img_650","z":10},{"i":721,"c":41,"u":0,"d":"LAMPARA DE ESCRITORIO CARACOL","p":"$6.500,00","v":6500,"k":"Sin Clave","l":"img_721","z":10},{"i":724,"c":41,"u":0,"d":"LAMPARA DE ESCRITORIO CASA PATO","p":"$8.500,00","v":8500,"k":"Sin Clave","l":"img_724","z":10},{"i":722,"c":41,"u":0,"d":"LAMPARA DE ESCRITORIO GATITO","p":"$6.500,00","v":6500,"k":"Sin Clave","l":"img_722","z":10},{"i":723,"c":41,"u":0,"d":"LAMPARA DE ESCRITORIO NAVE CONEJO","p":"$9.000,00","v":9000,"k":"Sin Clave","l":"img_723","z":10},{"i":717,"c":41,"u":0,"d":"LAMPARA ESPIRAL LED DE ESCRITORIO","p":"$12.000,00","v":12000,"k":"Sin Clave","l":"img_717","z":10},{"i":718,"c":41,"u":0,"d":"LAMPARA LED DE ESCRITORIO","p":"$9.100,00","v":9100,"k":"Sin Clave","l":"img_718","z":10},{"i":654,"c":41,"u":0,"d":"LAMPARA VELADOR WI-FI RGB CIRCULAR","p":"$9.000,00","v":9000,"k":"7799139008966","l":"img_654","z":10},{"i":666,"c":41,"u":0,"d":"LUZ DE NOCHE INFANTIL (NUBE) CONEXIÓN DIRECTA A CORRIENTE","p":"$3.000,00","v":3000,"k":"6947551983014","l":"img_666","z":10},{"i":551,"c":41,"u":0,"d":"MONOPATIN SCOOTER","p":"$45.000,00","v":45000,"k":"MONOPATIN","l":"img_551","z":10},{"i":651,"c":41,"u":0,"d":"PELOTA VOLADORA FLY NOVA","p":"$9.000,00","v":9000,"k":"PELOTAVOLADORA","l":"img_651","z":10},{"i":564,"c":41,"u":0,"d":"PISTOLA DE BURBUJAS BUBBLE DOLPHIN","p":"$9.600,00","v":9600,"k":"PISTOLABURBUJA","l":"img_564","z":10},{"i":563,"c":41,"u":0,"d":"PIZARRA POLICROMATICA 10 PULGADAS","p":"$6.000,00","v":6000,"k":"PIZARRA10PULGADAS","l":"img_563","z":10},{"i":697,"c":41,"u":0,"d":"POPIT ELECTRONICO","p":"$6.000,00","v":6000,"k":"Sin Clave","l":"img_697","z":10},{"i":772,"c":18,"u":0,"d":"PEN DRIVE 128GB","p":"$23.580,00","v":23580,"k":"Sin Clave","l":"img_772","z":10},{"i":366,"c":18,"u":0,"d":"PEN DRIVE 16GB 2.0 BLANCO \"GLOBAL\"","p":"$7.600,00","v":7600,"k":"PEN2-16GB-W","l":"img_366","z":10},{"i":250,"c":18,"u":0,"d":"PEN DRIVE 16GB 2.0 ROJO \"GLOBAL\"","p":"$7.600,00","v":7600,"k":"PEN2-16GB-R","l":"img_250","z":10},{"i":725,"c":18,"u":0,"d":"PEN DRIVE 16GB CLASE 10 - ONLY","p":"$7.600,00","v":7600,"k":"Sin Clave","l":"img_725","z":10},{"i":415,"c":18,"u":0,"d":"PEN DRIVE 2.0 32GB GLOBAL","p":"$9.300,00","v":9300,"k":"PEN2-32GB-W","l":"img_415","z":10},{"i":55,"c":18,"u":0,"d":"PEN DRIVE 2.0 SANDISK 16GB","p":"$11.000,00","v":11000,"k":"619659000431","l":"img_55","z":10},{"i":498,"c":18,"u":0,"d":"PEN DRIVE 32 GB CLASE 10 - ONLY 2.0","p":"$9.300,00","v":9300,"k":"112402004","l":"img_498","z":10},{"i":356,"c":18,"u":27,"d":"PEN DRIVE 64GB \"SANDISK\" 2.0","p":"$15.000,00","v":15000,"k":"619659097318","l":"img_356","z":10},{"i":45,"c":18,"u":0,"d":"PEN DRIVE 8GB SANDISK 2.0","p":"$9.000,00","v":9000,"k":"619659000424","l":"img_45","z":10},{"i":134,"c":18,"u":0,"d":"PEN DRIVE NANO 3.0 16GB SANDISK","p":"$15.000,00","v":15000,"k":"619659070632","l":"img_134","z":10},{"i":771,"c":18,"u":0,"d":"TARJETA DE MEMORIA MICRO SD 128GB MIXOR","p":"$21.600,00","v":21600,"k":"Sin Clave","l":"img_771","z":10},{"i":46,"c":18,"u":0,"d":"TARJETA DE MEMORIA MICRO SD 16GB CLASE 10 KINGSTON","p":"$8.000,00","v":8000,"k":"740617297300","l":"img_46","z":10},{"i":114,"c":18,"u":0,"d":"TARJETA DE MEMORIA MICRO SD KINGSTON 32GB CLASE 10","p":"$43.600,00","v":43600,"k":"740617274707","l":"img_114","z":10},{"i":32,"c":18,"u":0,"d":"TARJETA DE MEMORIA MICRO SD SANDISK 16GB","p":"$8.000,00","v":8000,"k":"619659161606","l":"img_32","z":10},{"i":31,"c":18,"u":0,"d":"TARJETA DE MEMORIA MICRO SD SANDISK 8GB","p":"$6.500,00","v":6500,"k":"619659067021","l":"img_31","z":10},{"i":458,"c":18,"u":0,"d":"TARJETA DE MEMORIA ONLY 16GB","p":"$5.000,00","v":5000,"k":"112401001","l":"img_458","z":10},{"i":459,"c":18,"u":0,"d":"TARJETA DE MEMORIA ONLY 32GB","p":"$6.200,00","v":6200,"k":"112401002","l":"img_459","z":10},{"i":460,"c":18,"u":0,"d":"TARJETA DE MEMORIA ONLY 64GB","p":"$8.200,00","v":8200,"k":"112401003","l":"img_460","z":10},{"i":661,"c":18,"u":0,"d":"TARJETA DE MEMORIA SANDISK 64GB","p":"$20.000,00","v":20000,"k":"619659185060","l":"img_661","z":10},{"i":595,"c":23,"u":0,"d":"MICROFONO DINAMICO DINAX","p":"$7.700,00","v":7700,"k":"7798145005051","l":"img_595","z":10},{"i":693,"c":23,"u":0,"d":"MICROFONO DINAMICO ONLY","p":"$5.000,00","v":5000,"k":"Sin Clave","l":"img_693","z":10},{"i":588,"c":11,"u":0,"d":"MINI PARLANTE PORTATIL T5 ONLY","p":"$7.500,00","v":7500,"k":"11260092","l":"img_588","z":10},{"i":769,"c":11,"u":0,"d":"PARLANTE BLUETOOTH DVL 100","p":"$48.000,00","v":48000,"k":"Sin Clave","l":"img_769","z":10},{"i":311,"c":11,"u":0,"d":"PARLANTE BLUETOOTH ONLY JH16-20","p":"$10.500,00","v":10500,"k":"116300498","l":"img_311","z":10},{"i":312,"c":11,"u":0,"d":"PARLANTE BLUETOOTH ONLY JH668","p":"$10.000,00","v":10000,"k":"116300276","l":"img_312","z":10},{"i":310,"c":11,"u":0,"d":"PARLANTE BLUETOOTH ONLY SXQF-XC011","p":"$9.500,00","v":9500,"k":"110101100","l":"img_310","z":10},{"i":105,"c":11,"u":0,"d":"PARLANTE MINI NOGA NET USB NG-106","p":"$5.000,00","v":5000,"k":"7798137697134","l":"img_105","z":10},{"i":63,"c":11,"u":0,"d":"PARLANTE PARA PC SEISA MOD YX-Q011","p":"$8.000,00","v":8000,"k":"6290132549704","l":"img_63","z":10},{"i":21,"c":11,"u":0,"d":"PARLANTE PARA PC SEISA MOD YX-Q062","p":"$9.000,00","v":9000,"k":"6290132555521","l":"img_21","z":10},{"i":408,"c":11,"u":0,"d":"PARLANTE PORTATIL BLUETOOTH 3X2 GTS1557","p":"$20.000,00","v":20000,"k":"6290132576588","l":"img_408","z":10},{"i":683,"c":11,"u":0,"d":"PARLANTE RGB 3 PULGADAS","p":"$15.000,00","v":15000,"k":"PARLANTERGB3PULG","l":"img_683","z":10},{"i":410,"c":24,"u":0,"d":"PILA 3V CR1220","p":"$120,00","v":120,"k":"CR1220","l":"img_410","z":10},{"i":417,"c":24,"u":0,"d":"PILA 3V CR2016","p":"$150,00","v":150,"k":"CR2016","l":"img_417","z":10},{"i":185,"c":24,"u":0,"d":"PILA A23 12V FULLTOTAL","p":"$2.000,00","v":2000,"k":"A23","l":"img_185","z":10},{"i":186,"c":24,"u":0,"d":"PILA A27 12V FULLTOTAL","p":"$150,00","v":150,"k":"A27","l":"img_186","z":10},{"i":533,"c":24,"u":0,"d":"PILA AA OSR","p":"$350,00","v":350,"k":"PILAOSRAA","l":"img_533","z":10},{"i":136,"c":24,"u":0,"d":"PILA AA RECARGABLE FULLTOTAL 2500MAH BLISTER X 2","p":"$8.000,00","v":8000,"k":"FTAA2500","l":"img_136","z":10},{"i":56,"c":24,"u":0,"d":"PILA AA RECARGABLE NOGA 2700MAH BLISTER X 2","p":"$8.000,00","v":8000,"k":"7798137383488","l":"img_56","z":10},{"i":499,"c":24,"u":0,"d":"PILA AAA OSR","p":"$300,00","v":300,"k":"AAAOSR","l":"img_499","z":10},{"i":733,"c":24,"u":0,"d":"PILA BATERIA 9V FULL TOTAL","p":"$6.800,00","v":6800,"k":"Sin Clave","l":"img_733","z":10},{"i":569,"c":24,"u":0,"d":"PILA DELEEX AA RECARGABLE BLUSTER 4 UNIDADES","p":"$14.000,00","v":14000,"k":"6970703340311","l":"img_569","z":10},{"i":620,"c":24,"u":0,"d":"PILA PARA RELOJ \"SODA LR621 AG1\"","p":"$500,00","v":500,"k":"PILARELOJLR621","l":"img_620","z":10},{"i":619,"c":24,"u":0,"d":"PILA PARA RELOJ \"SODA LR626 AG4\"","p":"$500,00","v":500,"k":"PILARELOJLR626","l":"img_619","z":10},{"i":571,"c":24,"u":0,"d":"PILA PARA RELOJ CR 927 POR UNIDA","p":"$500,00","v":500,"k":"6998818009275","l":"img_571","z":10},{"i":572,"c":24,"u":0,"d":"PILA PARA RELOJ T&E 1.55V","p":"$600,00","v":600,"k":"6970905250043","l":"img_572","z":10},{"i":407,"c":24,"u":0,"d":"PILA RECARGABLE AAA NOGA 1100 MAH BLISTER 2 UNIDADES","p":"$5.000,00","v":5000,"k":"7798137380753","l":"img_407","z":10},{"i":573,"c":24,"u":0,"d":"PILAS DELEEX SUPER LITHIUM CR2032","p":"$2.000,00","v":2000,"k":"6970703342018","l":"img_573","z":10},{"i":703,"c":24,"u":0,"d":"PILAS OM AA","p":"$300,00","v":300,"k":"Sin Clave","l":"img_703","z":10},{"i":731,"c":24,"u":0,"d":"PILAS RECARGABLE AA NOGA POWER 2700MAH BLISTER X 2 UNIDADES","p":"$8.100,00","v":8100,"k":"Sin Clave","l":"img_731","z":10},{"i":732,"c":24,"u":0,"d":"PILAS RECARGABLES AAA NOGA POWER 1100MAH BLISTER X 2 UNIDADES","p":"$5.000,00","v":5000,"k":"Sin Clave","l":"img_732","z":10},{"i":630,"c":29,"u":0,"d":"RELOJ SMARTWATCH H11","p":"$25.000,00","v":25000,"k":"H11","l":"img_630","z":10},{"i":514,"c":29,"u":0,"d":"RELOJ SMARTWATCH T900 ULTRA","p":"$20.000,00","v":20000,"k":"T900ULTRA","l":"img_514","z":10},{"i":745,"c":46,"u":0,"d":"ARMADO COMPLETO DEL EQUIPO","p":"$70.000,00","v":70000,"k":"Sin Clave","l":"img_745","z":10},{"i":746,"c":46,"u":0,"d":"COLOCACIÓN DE PASTA TERMICA + LIMPIEZA GENERAL DE EQUIPO","p":"$30.000,00","v":30000,"k":"Sin Clave","l":"img_746","z":10},{"i":747,"c":46,"u":0,"d":"INSTALACIÓN DE SO + DRIVERS + PROGRAMAS BASICOS","p":"$40.000,00","v":40000,"k":"Sin Clave","l":"img_747","z":10},{"i":508,"c":46,"u":0,"d":"REPARACIÓN PC","p":"$1,00","v":1,"k":"REPARAFLEX","l":"img_508","z":10},{"i":656,"c":52,"u":0,"d":"CAMARA DE SEGURIDAD WIFI SMART CAMERA","p":"$32.000,00","v":32000,"k":"0763571814024","l":"img_656","z":10},{"i":758,"c":51,"u":0,"d":"DESARME + LIMPIEZA PROFUNDA INTERNA DE COMPONENTES PC GAMER","p":"$45.000,00","v":45000,"k":"Sin Clave","l":"img_758","z":10},{"i":613,"c":51,"u":0,"d":"INSTALACIÓN DE PARLANTES INTERNOS NOTEBOOK HP","p":"$20.000,00","v":20000,"k":"Sin Clave","l":"img_613","z":10},{"i":750,"c":51,"u":0,"d":"LIMPIEZA DE COMPONENTES DE PC + SOPLETEADO + PASTA TERMICA+CLONACION DE DISCO+OPTIMIZACION DE SOFT","p":"$70.000,00","v":70000,"k":"Sin Clave","l":"img_750","z":10},{"i":759,"c":51,"u":0,"d":"REEMPLAZO PARLANTES NOTEBOOK GAMER","p":"$20.000,00","v":20000,"k":"Sin Clave","l":"img_759","z":10},{"i":190,"c":22,"u":87,"d":"SOPORTE DE BRAZO FLEXIBLE PARA CELULARES","p":"$4.500,00","v":4500,"k":"SOPORTEBRAZOCELU","l":"img_190","z":10},{"i":189,"c":22,"u":87,"d":"SOPORTE DE CELULAR DISEÑO CON MANOS","p":"$2.000,00","v":2000,"k":"ITECTUC230","l":"img_189","z":10},{"i":187,"c":22,"u":87,"d":"SOPORTE DE CELULAR PARA BICICLETAS O MOTOS","p":"$8.000,00","v":8000,"k":"02251189","l":"img_187","z":10},{"i":359,"c":22,"u":87,"d":"SOPORTE DE MESA PARA CELULARES ROJO \"OK STAND\"","p":"$1.500,00","v":1500,"k":"113200204","l":"img_359","z":10},{"i":289,"c":22,"u":0,"d":"SOPORTE DE TABLET DISEÑO INFANTIL CON MANOS","p":"$2.300,00","v":2300,"k":"ITECTUC236","l":"img_289","z":10},{"i":183,"c":22,"u":87,"d":"SOPORTE FLEXIBLE 3 PATAS PARA CELULARES","p":"$2.800,00","v":2800,"k":"6940351166014","l":"img_183","z":10},{"i":259,"c":22,"u":87,"d":"SOPORTE PARA CELULAR TIPO ELEFANTE","p":"$1.500,00","v":1500,"k":"ITECTUC228","l":"img_259","z":10},{"i":200,"c":22,"u":11,"d":"SOPORTE PARA CELULARES TIPO MANOS","p":"$1.500,00","v":1500,"k":"2004007930009","l":"img_200","z":10},{"i":476,"c":22,"u":0,"d":"SOPORTE PARA NOTEBOOK DINAX","p":"$6.000,00","v":6000,"k":"7798145009837","l":"img_476","z":10},{"i":729,"c":22,"u":0,"d":"SOPORTE PLASTICO PARA NOTEBOOK","p":"$4.000,00","v":4000,"k":"Sin Clave","l":"img_729","z":10},{"i":260,"c":22,"u":87,"d":"SOPORTE POP CLIP PARA CELULARES","p":"$1.500,00","v":1500,"k":"POPCLIP","l":"img_260","z":10},{"i":184,"c":22,"u":87,"d":"SOPORTE RIGIDO PARA CELULARES","p":"$2.500,00","v":2500,"k":"6940351166021","l":"img_184","z":10},{"i":89,"c":22,"u":11,"d":"SOPORTE UNIVERSAL PARA TABLET MOUNT & HOLDER","p":"$3.000,00","v":3000,"k":"2200308000022","l":"img_89","z":10},{"i":43,"c":22,"u":0,"d":"SOPORTE UNIVERSAL PARA TABLET PARA ESPALDAR DE ASIENTO","p":"$3.000,00","v":3000,"k":"6007","l":"img_43","z":10},{"i":526,"c":0,"u":0,"d":"CABLE ALARGADOR PLUG MACHO A HEMBRA","p":"$1.360,00","v":1360,"k":"ALARGADORPLUG","l":"img_526","z":10},{"i":730,"c":0,"u":0,"d":"CARGADOR PORTATIL POWER BANK INALAMBRICO 15000 MAH","p":"$30.000,00","v":30000,"k":"Sin Clave","l":"img_730","z":10},{"i":633,"c":0,"u":0,"d":"PULSERA ANTIESTATICA YX","p":"$4.500,00","v":4500,"k":"PULSERANTIESTATICA","l":"img_633","z":10},{"i":212,"c":34,"u":0,"d":"TPU MODELO J3 2016","p":"$150,00","v":150,"k":"622182303S040","l":"null","z":10},{"i":206,"c":34,"u":0,"d":"TPU MOTOROLA G6","p":"$150,00","v":150,"k":"TPUMOTOG6","l":"img_206","z":10},{"i":396,"c":34,"u":0,"d":"TPU SAMSUNG A12","p":"$250,00","v":250,"k":"TPUMOTOMOSAMA12","l":"null","z":10},{"i":208,"c":34,"u":0,"d":"TPU SAMSUNG J2 PRIME","p":"$160,00","v":160,"k":"TPUSAMJ2PRIME","l":"img_208","z":10},{"i":207,"c":34,"u":0,"d":"TPU SAMSUNG J7 PRIME","p":"$160,00","v":160,"k":"TPUASAMSUNGJ7PRIME","l":"img_207","z":10},{"i":738,"c":14,"u":89,"d":"BANDERA ARGENTINA 90X150 CM","p":"$7.500,00","v":7500,"k":"Sin Clave","l":"img_738","z":10},{"i":739,"c":14,"u":89,"d":"BANDERA ARGENTINA PARA AUTOMOVIL 30X45CM","p":"$1.500,00","v":1500,"k":"Sin Clave","l":"img_739","z":10},{"i":144,"c":14,"u":0,"d":"ENCENDEDOR DE CIGARRILLOS USB","p":"$300,00","v":300,"k":"ENCELECT","l":"img_144","z":10},{"i":737,"c":14,"u":89,"d":"VUVUCELA ARGENTINA DESMONTABLE 60X11CM","p":"$3.500,00","v":3500,"k":"Sin Clave","l":"img_737","z":10},{"i":62,"c":15,"u":0,"d":"VIDRIO TEMLADO PARA CELULARES","p":"$50,00","v":50,"k":"2704","l":"img_62","z":10},{"i":226,"c":15,"u":0,"d":"VIDRIO TEMPLADO HUAWEI Y550","p":"$70,00","v":70,"k":"TEMPLADO5","l":"img_226","z":10},{"i":302,"c":15,"u":0,"d":"VIDRIO TEMPLADO HUAWEY MATE10\/SAM A10\/XIAOMI NOTE7","p":"$100,00","v":100,"k":"TEMPLADO20","l":"img_302","z":10},{"i":228,"c":15,"u":0,"d":"VIDRIO TEMPLADO J7 PRIME","p":"$70,00","v":70,"k":"TEMPLADO7","l":"img_228","z":10},{"i":222,"c":15,"u":0,"d":"VIDRIO TEMPLADO LG K8","p":"$70,00","v":70,"k":"TEMPLADO2","l":"img_222","z":10},{"i":236,"c":15,"u":0,"d":"VIDRIO TEMPLADO MATE 20 LITE","p":"$70,00","v":70,"k":"TEMPLADO15","l":"img_236","z":10},{"i":239,"c":15,"u":0,"d":"VIDRIO TEMPLADO MOTO E","p":"$70,00","v":70,"k":"TEMPLADO19","l":"img_239","z":10},{"i":223,"c":15,"u":0,"d":"VIDRIO TEMPLADO MOTO E4 PLUS","p":"$70,00","v":70,"k":"TEMPLADO03","l":"img_223","z":10},{"i":224,"c":15,"u":0,"d":"VIDRIO TEMPLADO MOTO E5","p":"$70,00","v":70,"k":"TEMPLADO16","l":"img_224","z":10},{"i":220,"c":15,"u":0,"d":"VIDRIO TEMPLADO MOTO E5 PLAY","p":"$70,00","v":70,"k":"TEMPLADO00","l":"img_220","z":10},{"i":231,"c":15,"u":0,"d":"VIDRIO TEMPLADO MOTO G4 PLUS","p":"$70,00","v":70,"k":"TEMPLADO10","l":"img_231","z":10},{"i":232,"c":15,"u":0,"d":"VIDRIO TEMPLADO MOTO G5","p":"$70,00","v":70,"k":"TEMPLADO11","l":"img_232","z":10},{"i":233,"c":15,"u":0,"d":"VIDRIO TEMPLADO MOTO G5 PLUS","p":"$70,00","v":70,"k":"TEMPLADO12","l":"img_233","z":10},{"i":230,"c":15,"u":0,"d":"VIDRIO TEMPLADO MOTO G5 S PLUS","p":"$70,00","v":70,"k":"TEMPLADO9","l":"img_230","z":10},{"i":225,"c":15,"u":0,"d":"VIDRIO TEMPLADO MOTO G6","p":"$70,00","v":70,"k":"TEMPLADO04","l":"img_225","z":10},{"i":304,"c":15,"u":0,"d":"VIDRIO TEMPLADO MOTO G6 PLAY \/ E5","p":"$100,00","v":100,"k":"TEMPLADO22","l":"img_304","z":10},{"i":227,"c":15,"u":0,"d":"VIDRIO TEMPLADO MOTO G6 PLUS","p":"$70,00","v":70,"k":"TEMPLADO6","l":"img_227","z":10},{"i":50,"c":15,"u":0,"d":"VIDRIO TEMPLADO PARA TABLET DE 10\"","p":"$3.850,00","v":3850,"k":"PAD10","l":"img_50","z":10},{"i":59,"c":15,"u":0,"d":"VIDRIO TEMPLADO PARA TABLET DE 7 PULGADAS","p":"$170,00","v":170,"k":"847111111047","l":"img_59","z":10},{"i":248,"c":15,"u":0,"d":"VIDRIO TEMPLADO PARA TABLETS DE 7 PULGADAS","p":"$170,00","v":170,"k":"753759072391","l":"img_248","z":10},{"i":305,"c":15,"u":0,"d":"VIDRIO TEMPLADO SAMSUNG A10","p":"$100,00","v":100,"k":"TEMPLADO 23","l":"img_305","z":10},{"i":400,"c":15,"u":0,"d":"VIDRIO TEMPLADO SAMSUNG A20, A30, A30S, A50, A50S","p":"$130,00","v":130,"k":"TEMPLADO27","l":"null","z":10},{"i":397,"c":15,"u":0,"d":"VIDRIO TEMPLADO SAMSUNG GALAXY A12","p":"$130,00","v":130,"k":"TEMPLADO24","l":"null","z":10},{"i":399,"c":15,"u":0,"d":"VIDRIO TEMPLADO SAMSUNG GALAXY A20S","p":"$130,00","v":130,"k":"TEMPLADO26","l":"null","z":10},{"i":221,"c":15,"u":0,"d":"VIDRIO TEMPLADO SAMSUNG J3 2017","p":"$70,00","v":70,"k":"TEMPLADO01","l":"img_221","z":10},{"i":229,"c":15,"u":0,"d":"VIDRIO TEMPLADO SAMSUNG J5 2017","p":"$70,00","v":70,"k":"TEMPLADO8","l":"img_229","z":10},{"i":235,"c":15,"u":0,"d":"VIDRIO TEMPLADO SAMSUNG J5 PRO","p":"$70,00","v":70,"k":"TEMPLADO14","l":"img_235","z":10},{"i":238,"c":15,"u":0,"d":"VIDRIO TEMPLADO SAMSUNG J7 2016","p":"$70,00","v":70,"k":"TEMPLADO18","l":"img_238","z":10},{"i":237,"c":15,"u":0,"d":"VIDRIO TEMPLADO SAMSUNG J7 2017","p":"$70,00","v":70,"k":"TEMPLADO17","l":"img_237","z":10},{"i":234,"c":15,"u":0,"d":"VIDRIO TEMPLADO SAMSUNG J7 NEO","p":"$70,00","v":70,"k":"TEMPLADO13","l":"img_234","z":10},{"i":398,"c":15,"u":0,"d":"VIDRIO TEMPLADO SANSUNG GALAXY A11","p":"$130,00","v":130,"k":"TEMPLADO25","l":"null","z":10}],"ctg":[{"i":0,"n":"Todos"},{"i":53,"n":"ACCESORIOS ESCOLARES"},{"i":40,"n":"ACCESORIOS PARA BICICLETA"},{"i":3,"n":"ACCESORIOS PARA CELULARES"},{"i":1,"n":"ACCESORIOS PARA PC"},{"i":10,"n":"ACCESORIOS PARA TABLETS"},{"i":4,"n":"ACCESORIOS PARA TV"},{"i":17,"n":"ACCESORIOS PARA VEHICULOS"},{"i":2,"n":"ADAPTADORES"},{"i":27,"n":"ARTICULOS DE OFICINA"},{"i":5,"n":"AURICULARES"},{"i":20,"n":"BATERIAS"},{"i":43,"n":"BAZAR"},{"i":30,"n":"CABLES"},{"i":6,"n":"CABLES AUDIO Y VIDEO"},{"i":7,"n":"CABLES USB"},{"i":44,"n":"CABLES USB IPHONE"},{"i":39,"n":"CABLES USB TIPO C"},{"i":36,"n":"CABLES USB V8"},{"i":9,"n":"CARGADORES"},{"i":45,"n":"CARGADORES IPHONE"},{"i":38,"n":"CARGADORES TIPO C"},{"i":37,"n":"CARGADORES V8"},{"i":32,"n":"CICLISMO"},{"i":26,"n":"CONVERSORES"},{"i":25,"n":"CUIDADO PERSONAL"},{"i":16,"n":"ELECTRONICA"},{"i":13,"n":"FERRETERIA"},{"i":33,"n":"GAMING"},{"i":42,"n":"HOGAR"},{"i":12,"n":"ILUMINACION"},{"i":41,"n":"INFANTIL"},{"i":18,"n":"MEMORIAS Y PEN DRIVES"},{"i":23,"n":"MICROFONOS"},{"i":11,"n":"PARLANTES"},{"i":24,"n":"PILAS"},{"i":29,"n":"RELOJES"},{"i":46,"n":"REPARACIÓN PC"},{"i":52,"n":"SEGURODAD"},{"i":51,"n":"SERVICIO TÉCNICO PC"},{"i":22,"n":"SOPORTES"},{"i":-300,"n":"Servicios"},{"i":34,"n":"TPU"},{"i":14,"n":"VARIOS"},{"i":15,"n":"VIDRIO TEMPLADO"}],"und":[{"i":0,"n":"Sin Unidad"},{"i":36,"n":"LINTERNA"},{"i":87,"n":"SOPORTES PARA CELULARES"},{"i":88,"n":"AURICULAR TIPO VINCHA"},{"i":41,"n":"ADAPTADOR"},{"i":9,"n":"CABLE"},{"i":89,"n":"VARIOS"},{"i":10,"n":"AURICULAR"},{"i":27,"n":"PEN"},{"i":11,"n":"SOPORTE PARA TABLET"},{"i":13,"n":"CARGADOR"}],"ngc":"INFOTEC-TUC","tel2":"3813195003","cor2":"infotectuc@gmail.com","dir2":"Visitanos en calle Urquiza L20 entre muñecas y San Martin - Altura San Martin 730 - Barrio prados del libertador - Alderetes","alf":"Alfabeto","myp":"Mayor Precio","mnp":"Menor Precio","ctgs":"Categoría","orp":"Ordenar Por","bsc":"Buscar","crt":true,"nam":"Nombre","sct":"Comprar Ahora","ernw":"Error al conectarse al servidor, compruebe su conexión a internet e intente nuevamente.","img":true,"uni":false,"cla":false,"wha":true,"clo":"Cerrar","nxt":"Siguiente","prv":"Anterior","sin":"Sin Información","clt":"w3-black","tmp":1787546234064,"lg":"logo"} /*#d4t4#*/;
+		</script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
